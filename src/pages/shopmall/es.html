@@ -1,0 +1,84 @@
+  <figure class="shot">
+    <img src="marketplace-desktop.png" alt="Página de inicio del mercado Store·Mall, con productos destacados de varias tiendas de demostración.">
+    <figcaption>La página de inicio del mercado — todos los productos publicados de todas las tiendas participantes, en un solo feed.</figcaption>
+  </figure>
+
+  <figure class="shot">
+    <img src="marketplace-mobile.png" alt="La misma página de inicio del mercado en ancho de móvil.">
+    <figcaption>La misma página en ancho de móvil.</figcaption>
+  </figure>
+
+  <h2>Aislar a los inquilinos</h2>
+
+  <p>Cada tabla que guarda datos de una tienda lleva un <code>store_id</code>,
+  y la seguridad a nivel de fila de Postgres impone el límite dentro de la
+  propia base de datos — no en código de aplicación que podría tener un
+  fallo. La única excepción deliberada es el catálogo del propio mercado:
+  lee de todas las tiendas sin ese filtro, pero solo productos activos de
+  tiendas que han decidido aparecer publicadas. Un pedido o un dato de
+  cliente nunca cruza esa línea.</p>
+
+  <h2>Ocho idiomas, con honestidad</h2>
+
+  <figure class="shot">
+    <img src="storefront-desktop.png" alt="David's Whiskey Cave, una de las tiendas de demostración, con su propio selector de idioma.">
+    <figcaption>Cada tienda es también su propio sitio independiente — esta es una tienda de demostración, David's Whiskey Cave.</figcaption>
+  </figure>
+
+  <p>El contenido del catálogo y los textos de la interfaz los traduce
+  Claude, sobre todo con el modelo más pequeño, Haiku, hacia una columna que
+  el dueño de la tienda puede revisar después, no aprobar antes. Cada texto
+  lleva una etiqueta — Nativo, Revisado o Automático — para que quien compra
+  sepa qué está leyendo. La cobertura no está completa en todas partes: la
+  búsqueda a nivel de mercado todavía es solo en inglés y español; el resto
+  es una fase posterior.</p>
+
+  <h2>Una puerta distinta para las tiendas</h2>
+
+  <p>Los dueños de tienda inician sesión con su propio sistema de
+  autenticación, completamente separado del que usa quien compra. Desde ahí
+  gestionan productos e inventario, procesan pedidos, configuran el tema y
+  el envío de la tienda, lanzan promociones y usan las herramientas de IA
+  integradas para descripciones y contenido. La primera vez, una guía de
+  cinco pasos acompaña al nuevo dueño por el catálogo, la marca, los
+  mercados y el dinero, el envío y las páginas legales antes de que la
+  tienda pueda publicarse. Conseguir una cuenta de dueño todavía necesita
+  aprobación — de momento no hay alta autoservicio en ese lado.</p>
+
+  <h2>Lo que costó de verdad</h2>
+
+  <p>Lo difícil no fue traducir el texto, sino decidir qué queda como
+  referencia cuando dos personas escriben en idiomas distintos y a una de
+  ellas se le está haciendo una pregunta de cumplimiento normativo. Un
+  administrador — que solo trabaja en inglés — puede preguntarle a un
+  futuro dueño de tienda algo como "¿tienes licencia para enviar alcohol
+  dentro de la UE?". Ese dueño puede estar en cualquier punto entre Varsovia
+  y Lisboa. Traducir eso sin cuidado introduce ambigüedad en un registro
+  legal.</p>
+
+  <p>Así que el administrador siempre escribe y lee en inglés, sin
+  excepción. Todo lo que se envía a un dueño se traduce en el momento en
+  que se despacha, no en el momento en que se escribe — derivado del
+  mercado de la tienda, no de un idioma que el dueño tenga que elegir. El
+  dueño responde con sus propias palabras, y esa respuesta se guarda tal
+  cual se escribió; la versión en inglés que ve el administrador es una
+  traducción de cortesía superpuesta, nunca un sustituto. Cualquiera de las
+  dos partes puede ver siempre el original.</p>
+
+  <p>Esa separación — un texto de referencia, una traducción encima,
+  decidida una vez y aplicada en un único punto — es lo que permite añadir
+  el idioma de un mercado nuevo sin tocar el lado del administrador. La
+  limitación de dos idiomas en el equipo de administración no es algo que
+  la plataforma esquiva; es justo lo que ese diseño vuelve irrelevante.</p>
+
+  <h2>Por dentro</h2>
+
+  <p>Angular 22 — standalone, sin zonas, con signals — sobre un backend en
+  Express/Node. Supabase para Postgres, autenticación y almacenamiento.
+  Stripe para los pagos. Alojado en Vercel y Railway. Unas 80.000 líneas, en
+  un repositorio privado.</p>
+
+  <p>Está en vivo en <a href="https://www.store-mall.com/mall">store-mall.com/mall</a>
+  — puedes echar un vistazo. Todavía no hay ningún negocio real ahí; las
+  tiendas son de demostración, en el lugar de las reales para las que está
+  pensado.</p>

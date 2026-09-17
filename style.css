@@ -113,6 +113,8 @@ footer {
   border-top: 1px solid var(--rule);
   font-size: 14px;
   color: var(--slate);
+  display: flex;
+  gap: 16px;
 }
 
 /* Email address: shown as selectable text with a copy button, so it is usable
@@ -223,6 +225,12 @@ footer {
   color: var(--slate);
 }
 
+.back {
+  margin-top: 40px;
+  font-size: 14px;
+  color: var(--slate);
+}
+
 /* An article's own prose: slightly larger, since it is the point of the page. */
 .langblock > h2 + p,
 .langblock > p { font-size: 17px; }
@@ -230,4 +238,22 @@ footer {
 nav a[aria-current="page"] {
   color: var(--ink);
   font-weight: 600;
+}
+
+/* Screenshot figures on project pages. */
+.shot {
+  margin: 22px 0;
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.shot figcaption {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--slate);
 }

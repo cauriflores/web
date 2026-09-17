@@ -24,6 +24,7 @@ the rest of this site already works: nobody is left without something readable.
 
 import html
 import json
+import shutil
 import sys
 from datetime import date
 from pathlib import Path
@@ -34,7 +35,11 @@ POSTS_OUT = ROOT / "posts"
 # The writing index IS the front page of this site, so it lands at the root.
 INDEX_OUT = ROOT
 
-ASSET_VERSION = 4  # bump when style.css or lang.js changes, or browsers cache the old one
+# Standing project pages (Store·Mall, and any future one) — not dated, not in
+# the Writing feed, just a page reachable from nav. See src/pages/<slug>/.
+SRC_PAGES = ROOT / "src" / "pages"
+
+ASSET_VERSION = 5  # bump when style.css or lang.js changes, or browsers cache the old one
 
 # ⚠️ Support and Privacy are ABSOLUTE, and on a different host on purpose.
 # https://cauriflores.github.io/ is Pacheco's App Store support URL and
@@ -45,8 +50,14 @@ HUB = "https://cauriflores.github.io"
 NAV = [
     ("home", "/", "Writing", "Escritos"),
     ("pacheco", "/pacheco/", "Pacheco", "Pacheco"),
-    ("support", f"{HUB}/support/", "Support", "Soporte"),
-    ("privacy", f"{HUB}/privacy.html", "Privacy", "Privacidad"),
+    ("shopmall", "/shopmall/", "Store·Mall", "Store·Mall"),
+]
+
+# Support and Privacy are one app's pages, not the site's — they live in a
+# footer on every page instead of the top nav, which is reserved for projects.
+FOOTER_LINKS = [
+    (f"{HUB}/support/", "Support", "Soporte"),
+    (f"{HUB}/privacy.html", "Privacy", "Privacidad"),
 ]
 
 MONTHS = {
@@ -70,6 +81,14 @@ def nav_html(current: str, lang: str, depth: int) -> str:
         else:
             links.append(f'<a href="{href}">{label}</a>')
     return "<nav>" + "".join(links) + "</nav>"
+
+
+def footer_html(lang: str) -> str:
+    links = "".join(
+        f'<a href="{href}">{en if lang == "en" else es}</a>'
+        for href, en, es in FOOTER_LINKS
+    )
+    return f"<footer>{links}</footer>"
 
 
 def page(*, title_en, title_es, description, body_en, body_es, current, depth) -> str:
@@ -101,10 +120,12 @@ def page(*, title_en, title_es, description, body_en, body_es, current, depth) -
 
   <div class="langblock" lang="en">
 {body_en}
+{footer_html('en')}
   </div>
 
   <div class="langblock" lang="es">
 {body_es}
+{footer_html('es')}
   </div>
 
 </div>
@@ -126,9 +147,18 @@ def post_body(meta, body, lang, current="writing") -> str:
 
 {body.rstrip()}
 
-  <footer>
-    <p><a href="/">&larr; {back}</a></p>
-  </footer>"""
+  <p class="back"><a href="/">&larr; {back}</a></p>"""
+
+
+def project_page_body(meta, body, lang, current) -> str:
+    return f"""  <header>
+    <p class="eyebrow">{html.escape(meta['eyebrow'][lang])}</p>
+    <h1>{html.escape(meta['title'][lang])}</h1>
+    <p class="lede">{html.escape(meta['summary'][lang])}</p>
+    {nav_html(current, lang, 1)}
+  </header>
+
+{body.rstrip()}"""
 
 
 def index_body(posts, lang) -> str:
@@ -212,6 +242,41 @@ def main() -> int:
         )
     )
     print(f"  /  ({len(posts)} post{'s' if len(posts) != 1 else ''})")
+
+    if SRC_PAGES.exists():
+        for directory in sorted(SRC_PAGES.iterdir()):
+            if not (directory / "page.json").exists():
+                continue
+            slug = directory.name
+            meta = json.loads((directory / "page.json").read_text())
+            for field in ("title", "eyebrow", "summary"):
+                if field not in meta:
+                    sys.exit(f"{slug}: page.json is missing {field!r}")
+            for lang in ("en", "es"):
+                if not (directory / f"{lang}.html").exists():
+                    sys.exit(f"{slug}: missing {lang}.html — both languages ship")
+
+            out = ROOT / slug
+            out.mkdir(parents=True, exist_ok=True)
+            (out / "index.html").write_text(
+                page(
+                    title_en=meta["title"]["en"],
+                    title_es=meta["title"]["es"],
+                    description=meta["summary"]["en"],
+                    body_en=project_page_body(meta, (directory / "en.html").read_text(), "en", slug),
+                    body_es=project_page_body(meta, (directory / "es.html").read_text(), "es", slug),
+                    current=slug,
+                    depth=1,
+                )
+            )
+            # Anything besides the three source files (page.json, en.html, es.html)
+            # is a static asset — screenshots, mainly — copied through as-is.
+            for asset in directory.iterdir():
+                if asset.name in {"page.json", "en.html", "es.html"}:
+                    continue
+                shutil.copy2(asset, out / asset.name)
+            print(f"  /{slug}/")
+
     return 0
 
 
