@@ -1,0 +1,29 @@
+  <p>Pacheco began as an iPhone app: the weather where you are, and the weather
+  where the people you care about are, each on <em>their</em> clock. If it says
+  23:37 under a friend's name, that is the time for them, not for you.</p>
+
+  <p>It now runs in a browser too, at <a href="/pacheco/">/pacheco/</a>. Same
+  scope as the iPhone version — no more and no less.</p>
+
+  <h2>What is different underneath</h2>
+
+  <p>The iPhone app uses Apple's WeatherKit, which signs every request with a
+  private key. A website made of static files cannot keep a secret like that:
+  anyone who opened the developer tools would have it. So the web version uses
+  <a href="https://open-meteo.com/">Open-Meteo</a>, which needs no key at all.
+  That single constraint is what keeps the whole thing deployable as plain files,
+  with nothing to protect and no server of my own.</p>
+
+  <p>It also means the two versions can disagree about the weather, because they
+  are asking different people.</p>
+
+  <h2>It works with the network off</h2>
+
+  <p>Install it from the browser and it keeps working when you have no signal:
+  the app itself, both languages and every photograph you have already seen are
+  stored on your device. The forecast is not cached, deliberately. A three-hour-old
+  forecast shown as if it were current is worse than saying plainly that there
+  is none.</p>
+
+  <p>The photographs are all from Unsplash, and every photographer is credited
+  inside the app.</p>

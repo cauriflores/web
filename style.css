@@ -1,0 +1,233 @@
+:root {
+  --ink: #0f151c;
+  --paper: #eef1f4;
+  --card: #ffffff;
+  --slate: #5d6b79;
+  --rule: #d3dae0;
+  --accent: #1f6f9c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e4eaf0;
+    --paper: #0c1117;
+    --card: #141b23;
+    --slate: #8b9aa8;
+    --rule: #242f3a;
+    --accent: #6bb6de;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 28px;
+  margin-bottom: 36px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin: 0 0 10px;
+}
+
+h1 {
+  font-family: Newsreader, Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  font-size: clamp(30px, 5vw, 42px);
+  line-height: 1.1;
+  margin: 0 0 12px;
+  text-wrap: balance;
+}
+
+h2 {
+  font-family: Newsreader, Georgia, serif;
+  font-weight: 600;
+  font-size: 22px;
+  margin: 36px 0 10px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 24px 0 6px;
+}
+
+p, li { max-width: 62ch; }
+p { margin: 0 0 14px; }
+ul { padding-left: 20px; margin: 0 0 14px; }
+li { margin-bottom: 6px; }
+
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+.lede { color: var(--slate); font-size: 17px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin: 22px 0;
+}
+
+.card p:last-child { margin-bottom: 0; }
+
+.updated {
+  font-size: 13px;
+  color: var(--slate);
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+
+nav {
+  margin-top: 28px;
+  display: flex;
+  gap: 18px;
+  font-size: 15px;
+}
+
+footer {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: 14px;
+  color: var(--slate);
+}
+
+/* Email address: shown as selectable text with a copy button, so it is usable
+   even where no mail client is configured to handle a mailto: link. */
+.mail-address {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mail-address a { word-break: break-all; }
+
+.copy {
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  padding: 5px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--slate);
+  cursor: pointer;
+}
+
+.copy:hover { color: var(--ink); border-color: var(--slate); }
+.copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy.copied { color: var(--accent); border-color: var(--accent); }
+
+/* Language switcher. Hidden until lang.js runs, so that with JavaScript off
+   both language blocks simply remain on the page, stacked and readable. */
+.langbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.langbar[hidden] { display: none; }
+
+.langbar button {
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  padding: 6px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--slate);
+  cursor: pointer;
+}
+
+.langbar button:hover { color: var(--ink); border-color: var(--slate); }
+.langbar button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.langbar button[aria-current="true"] {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--slate);
+  font-weight: 600;
+}
+
+/* Without JavaScript both blocks show; a rule keeps them visually separated. */
+.langblock + .langblock {
+  margin-top: 72px;
+  padding-top: 8px;
+  border-top: 2px solid var(--rule);
+}
+
+.langblock[hidden] { display: none; }
+
+/* When JavaScript has hidden the first block, the second is the only one on
+   the page and must not carry a separator. */
+.langblock[hidden] + .langblock {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* ── Writing ──────────────────────────────────────────────────────────────
+   The index of posts. Entries are separated by rules rather than cards, so a
+   list of them reads as one column rather than a stack of boxes. */
+
+.entry {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.entry:last-of-type { border-bottom: 0; }
+
+.entry h2 {
+  font-size: 21px;
+  margin: 2px 0 6px;
+}
+
+.entry h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.entry h2 a:hover { color: var(--accent); }
+
+.entry p { margin: 0; color: var(--slate); }
+
+.entry-date {
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--slate);
+}
+
+/* An article's own prose: slightly larger, since it is the point of the page. */
+.langblock > h2 + p,
+.langblock > p { font-size: 17px; }
+
+nav a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 600;
+}

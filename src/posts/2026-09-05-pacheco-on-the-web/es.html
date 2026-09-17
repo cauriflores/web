@@ -1,0 +1,29 @@
+  <p>Pacheco empezó como una app para iPhone: el clima donde estás, y el clima
+  donde está la gente que te importa, cada uno con <em>su</em> reloj. Si bajo el
+  nombre de alguien dice 23:37, esa es la hora para esa persona, no para ti.</p>
+
+  <p>Ahora también funciona en el navegador, en <a href="/pacheco/">/pacheco/</a>.
+  El mismo alcance que la versión de iPhone: ni más ni menos.</p>
+
+  <h2>Qué cambia por dentro</h2>
+
+  <p>La app de iPhone usa WeatherKit de Apple, que firma cada petición con una
+  clave privada. Una web hecha de archivos estáticos no puede guardar un secreto
+  así: cualquiera que abriera las herramientas de desarrollo lo tendría. Por eso
+  la versión web usa <a href="https://open-meteo.com/">Open-Meteo</a>, que no
+  necesita clave alguna. Esa única restricción es lo que permite publicarlo todo
+  como simples archivos estáticos, sin nada que proteger y sin servidor propio.</p>
+
+  <p>También significa que las dos versiones pueden dar pronósticos distintos,
+  porque les preguntan a fuentes distintas.</p>
+
+  <h2>Funciona sin conexión</h2>
+
+  <p>Si instalas la app desde el navegador, sigue funcionando sin cobertura: la app,
+  los dos idiomas y todas las fotografías que ya hayas visto quedan guardadas en
+  tu dispositivo. El pronóstico no se guarda, y eso es deliberado. Un pronóstico de
+  hace tres horas mostrado como si fuera actual es peor que decir claramente que
+  no hay ninguno.</p>
+
+  <p>Las fotografías son todas de Unsplash, y cada fotógrafo aparece acreditado
+  dentro de la app.</p>

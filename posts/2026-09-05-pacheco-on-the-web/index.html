@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pacheco is now on the web</title>
+<meta name="description" content="The iPhone weather app, rebuilt as a website that runs in any browser.">
+<link rel="icon" href="../../favicon.ico?v=4" sizes="any">
+<link rel="icon" type="image/png" href="../../favicon-32.png?v=4" sizes="32x32">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=4">
+<meta name="theme-color" content="#c2185b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="../../style.css?v=4">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="langbar" hidden>
+    <button type="button" data-lang="en">English</button>
+    <button type="button" data-lang="es">Español</button>
+  </div>
+  <span hidden data-title-en="Pacheco is now on the web" data-title-es="Pacheco ya está en la web"></span>
+
+  <div class="langblock" lang="en">
+  <header>
+    <p class="eyebrow">September 5, 2026</p>
+    <h1>Pacheco is now on the web</h1>
+    <p class="lede">The iPhone weather app, rebuilt as a website that runs in any browser.</p>
+    <nav><a href="/">Writing</a><a href="/pacheco/">Pacheco</a><a href="https://cauriflores.github.io/support/">Support</a><a href="https://cauriflores.github.io/privacy.html">Privacy</a></nav>
+  </header>
+
+  <p>Pacheco began as an iPhone app: the weather where you are, and the weather
+  where the people you care about are, each on <em>their</em> clock. If it says
+  23:37 under a friend's name, that is the time for them, not for you.</p>
+
+  <p>It now runs in a browser too, at <a href="/pacheco/">/pacheco/</a>. Same
+  scope as the iPhone version — no more and no less.</p>
+
+  <h2>What is different underneath</h2>
+
+  <p>The iPhone app uses Apple's WeatherKit, which signs every request with a
+  private key. A website made of static files cannot keep a secret like that:
+  anyone who opened the developer tools would have it. So the web version uses
+  <a href="https://open-meteo.com/">Open-Meteo</a>, which needs no key at all.
+  That single constraint is what keeps the whole thing deployable as plain files,
+  with nothing to protect and no server of my own.</p>
+
+  <p>It also means the two versions can disagree about the weather, because they
+  are asking different people.</p>
+
+  <h2>It works with the network off</h2>
+
+  <p>Install it from the browser and it keeps working when you have no signal:
+  the app itself, both languages and every photograph you have already seen are
+  stored on your device. The forecast is not cached, deliberately. A three-hour-old
+  forecast shown as if it were current is worse than saying plainly that there
+  is none.</p>
+
+  <p>The photographs are all from Unsplash, and every photographer is credited
+  inside the app.</p>
+
+  <footer>
+    <p><a href="/">&larr; All writing</a></p>
+  </footer>
+  </div>
+
+  <div class="langblock" lang="es">
+  <header>
+    <p class="eyebrow">5 de septiembre de 2026</p>
+    <h1>Pacheco ya está en la web</h1>
+    <p class="lede">La app del clima para iPhone, reconstruida como una web que funciona en cualquier navegador.</p>
+    <nav><a href="/">Escritos</a><a href="/pacheco/">Pacheco</a><a href="https://cauriflores.github.io/support/">Soporte</a><a href="https://cauriflores.github.io/privacy.html">Privacidad</a></nav>
+  </header>
+
+  <p>Pacheco empezó como una app para iPhone: el clima donde estás, y el clima
+  donde está la gente que te importa, cada uno con <em>su</em> reloj. Si bajo el
+  nombre de alguien dice 23:37, esa es la hora para esa persona, no para ti.</p>
+
+  <p>Ahora también funciona en el navegador, en <a href="/pacheco/">/pacheco/</a>.
+  El mismo alcance que la versión de iPhone: ni más ni menos.</p>
+
+  <h2>Qué cambia por dentro</h2>
+
+  <p>La app de iPhone usa WeatherKit de Apple, que firma cada petición con una
+  clave privada. Una web hecha de archivos estáticos no puede guardar un secreto
+  así: cualquiera que abriera las herramientas de desarrollo lo tendría. Por eso
+  la versión web usa <a href="https://open-meteo.com/">Open-Meteo</a>, que no
+  necesita clave alguna. Esa única restricción es lo que permite publicarlo todo
+  como simples archivos estáticos, sin nada que proteger y sin servidor propio.</p>
+
+  <p>También significa que las dos versiones pueden dar pronósticos distintos,
+  porque les preguntan a fuentes distintas.</p>
+
+  <h2>Funciona sin conexión</h2>
+
+  <p>Si instalas la app desde el navegador, sigue funcionando sin cobertura: la app,
+  los dos idiomas y todas las fotografías que ya hayas visto quedan guardadas en
+  tu dispositivo. El pronóstico no se guarda, y eso es deliberado. Un pronóstico de
+  hace tres horas mostrado como si fuera actual es peor que decir claramente que
+  no hay ninguno.</p>
+
+  <p>Las fotografías son todas de Unsplash, y cada fotógrafo aparece acreditado
+  dentro de la app.</p>
+
+  <footer>
+    <p><a href="/">&larr; Todos los escritos</a></p>
+  </footer>
+  </div>
+
+</div>
+<script src="../../lang.js?v=4"></script>
+</body>
+</html>
