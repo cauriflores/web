@@ -1,0 +1,1 @@
+:root{--paper: #ffffff;--ink: #111214;--muted: #6b7280;--rule: #e5e7eb}@media(prefers-color-scheme:dark){:root{--paper: #101114;--ink: #f3f4f6;--muted: #9aa1ab;--rule: #2a2d33}}*{box-sizing:border-box}html,body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;-webkit-text-size-adjust:100%}
