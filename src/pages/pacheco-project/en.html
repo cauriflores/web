@@ -1,0 +1,66 @@
+  <figure class="gallery-fig">
+    <div class="gallery">
+      <img src="home.png" alt="Pacheco's Home tab: a clear afternoon in Madrid, 21 °C, with the 24-hour and 9-day forecasts.">
+      <img src="friend.png" alt="A saved friend's screen: Abuela in Caracas, mostly cloudy, shown on Caracas time.">
+      <img src="night.png" alt="A friend's screen at night: Kenji, drizzle, 26 °C.">
+    </div>
+    <figcaption>The iPhone app: your own weather, then a screen per friend — each on their local clock.</figcaption>
+  </figure>
+
+  <h2>Llegó Pacheco</h2>
+
+  <p>In Venezuela, <em>"Llegó Pacheco"</em> — "Pacheco has arrived" — means
+  the cold has come. The phrase remembers Antonio Pacheco, a flower farmer who
+  came down from Galipán, on the El Ávila hill, to sell flowers in Caracas at
+  the end of each November. His arrival lined up with the start of the cold
+  season, and the name stuck to the season itself. The app is named after the
+  phrase, not the farmer.</p>
+
+  <h2>Two platforms, one set of numbers</h2>
+
+  <p>SwiftUI and Angular can't share a runtime, so the two versions can't
+  share code for the things that make the app feel like itself: the rain and
+  snow that fall over a photograph, the wind that slowly pans it, the gradient
+  that keeps the text readable on top. What they share instead is the
+  <em>numbers</em> — the same particle counts, the same scrim strength —
+  changed in both places at once or not at all. It's a discipline rather than
+  a compiler guarantee, and it has held.</p>
+
+  <p>Most of the app is in step this way. What isn't yet: fourteen of the
+  photographs date from an earlier pass and are lower-resolution than the
+  rest — visible if you look closely, not at a glance. They're on the
+  list.</p>
+
+  <h2>What's different underneath</h2>
+
+  <p>The iPhone app gets its forecasts from Apple's WeatherKit, which
+  authenticates through the developer account itself. A website made of
+  static files has no such account to hide behind, so the web version asks
+  <a href="https://open-meteo.com/">Open-Meteo</a> instead, which needs no key
+  at all. Why that one constraint shapes the whole web build — and why the two
+  versions can occasionally disagree about tomorrow — is the subject of
+  <a href="/posts/2026-09-05-pacheco-on-the-web/">Pacheco is now on the web</a>.</p>
+
+  <h2>Under the hood</h2>
+
+  <p><strong>iPhone.</strong> SwiftUI, Swift 6, iOS 17.2 and later. WeatherKit
+  for forecasts, SwiftData for saved friends, MapKit for place search.
+  45 tests.</p>
+
+  <p><strong>Web.</strong> Angular 22 and TypeScript. Installable, and it keeps
+  working offline — the app, both languages and every photograph you've
+  already seen. Open-Meteo for forecasts. 190 tests.</p>
+
+  <p>The two are within two lines of each other in size: about 4,300 lines
+  apiece.</p>
+
+  <h2>Get it</h2>
+
+  <p><a href="https://apps.apple.com/app/pacheco/id6806208255">Pacheco on the
+  App Store</a> — free, for iPhone, iOS 17.2 or later.<br>
+  <a href="/pacheco/">Pacheco in the browser</a> — any device, nothing to
+  install.</p>
+
+  <p class="listing">For the App Store listing:
+  <a href="https://cauriflores.github.io/support/">Support</a> ·
+  <a href="https://cauriflores.github.io/privacy.html">Privacy</a></p>

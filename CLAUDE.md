@@ -14,10 +14,13 @@ python3 tools/build-blog.py   # then commit the generated files
 ```
 
 It reads `src/posts/<slug>/` (`post.json` + `en.html` + `es.html`) and writes
-`index.html` at the root and `posts/<slug>/index.html`. **Both languages are
-required** — the build refuses a post that has only one, deliberately: every
-page ships both and `lang.js` picks one, so nobody is left without something
-readable.
+`index.html` at the root (the Updates / Novedades index) and
+`posts/<slug>/index.html`. It also reads `src/pages/<slug>/` (`page.json` +
+`en.html` + `es.html` + any images) and writes a standing **project hub** at
+`/<slug>/` — icon, platforms row, gallery, technical story — not dated and
+not listed in Updates. **Both languages are required** — the build refuses a
+post or page that has only one, deliberately: every page ships both and
+`lang.js` picks one, so nobody is left without something readable.
 
 **Bump `ASSET_VERSION` in `build-blog.py`** whenever `style.css` or `lang.js`
 changes. Assets are cache-busted with `?v=N` and browsers will otherwise serve
@@ -38,9 +41,11 @@ That is why this site exists on its own domain at all — it is not cosmetic.
 
 Consequences in this repo:
 
-- **The Support and Privacy entries in `NAV` are absolute cross-host links** to
-  `https://cauriflores.github.io/...`. A relative href would 404 here. Do not
-  "tidy" them into relative paths.
+- **Support and Privacy are linked ONLY from the Pacheco hub page**
+  (`src/pages/pacheco-project/{en,es}.html`), as absolute cross-host links to
+  `https://cauriflores.github.io/...`. They are Pacheco's App Store links, not
+  the site's — keep them off the nav and any site-wide chrome, and do not
+  "tidy" them into relative paths: a relative href would 404 here.
 - `https://cauriflores.github.io/support/` links *back* here. It is not an
   orphan; keep it working.
 - Nothing in this repo should ever write to `~/Developer/cauriflores.github.io`.

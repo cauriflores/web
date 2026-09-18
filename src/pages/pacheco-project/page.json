@@ -1,0 +1,25 @@
+{
+  "title": {
+    "en": "Pacheco",
+    "es": "Pacheco"
+  },
+  "eyebrow": {
+    "en": "On the App Store, and in the browser",
+    "es": "En el App Store, y en el navegador"
+  },
+  "summary": {
+    "en": "The weather where you are, and the weather where the people you care about are — each on their own clock. Built twice: a native iPhone app, and a web version for any browser, kept in step even where the two platforms disagree underneath.",
+    "es": "El clima donde estás, y el clima donde está la gente que te importa, cada uno con su reloj. Construida dos veces: una app nativa para iPhone y una versión web para cualquier navegador, mantenidas a la par incluso donde las dos plataformas difieren por dentro."
+  },
+  "icon": "icon.png",
+  "platforms": [
+    {
+      "label": { "en": "App Store", "es": "App Store" },
+      "href": "https://apps.apple.com/app/pacheco/id6806208255"
+    },
+    {
+      "label": { "en": "Web", "es": "Web" },
+      "href": "/pacheco/"
+    }
+  ]
+}

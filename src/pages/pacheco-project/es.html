@@ -1,0 +1,69 @@
+  <figure class="gallery-fig">
+    <div class="gallery">
+      <img src="home.png" alt="La pestaña Inicio de Pacheco: una tarde despejada en Madrid, 21 °C, con los pronósticos de 24 horas y 9 días.">
+      <img src="friend.png" alt="La pantalla de una amiga guardada: Abuela en Caracas, mayormente nublado, en hora de Caracas.">
+      <img src="night.png" alt="La pantalla de un amigo de noche: Kenji, llovizna, 26 °C.">
+    </div>
+    <figcaption>La app de iPhone: tu propio clima, y luego una pantalla por cada amigo, cada una con su hora local.</figcaption>
+  </figure>
+
+  <h2>Llegó Pacheco</h2>
+
+  <p>En Venezuela, <em>«Llegó Pacheco»</em> quiere decir que llegó el frío. La
+  expresión recuerda a Antonio Pacheco, un cultivador de flores que bajaba de
+  Galipán, en el cerro El Ávila, a vender flores en Caracas a finales de cada
+  noviembre. Su llegada coincidía con el inicio de la temporada fría, y el
+  nombre se quedó pegado a la temporada. La app lleva el nombre de la
+  expresión, no del florista.</p>
+
+  <h2>Dos plataformas, un solo juego de números</h2>
+
+  <p>SwiftUI y Angular no pueden compartir un runtime, así que las dos
+  versiones no pueden compartir el código de lo que hace que la app se sienta
+  como ella misma: la lluvia y la nieve que caen sobre una fotografía, el
+  viento que la desplaza despacio, el degradado que mantiene el texto legible
+  encima. Lo que comparten son los <em>números</em>: la misma cantidad de
+  partículas, la misma intensidad del degradado, cambiados en los dos sitios a
+  la vez o en ninguno. Es una disciplina, no una garantía del compilador, y ha
+  aguantado.</p>
+
+  <p>La mayor parte de la app va así, a la par. Lo que todavía no: catorce de
+  las fotografías vienen de una tanda anterior y tienen menos resolución que
+  el resto. Se nota si miras de cerca, no a simple vista. Están en la
+  lista.</p>
+
+  <h2>Qué cambia por dentro</h2>
+
+  <p>La app de iPhone obtiene los pronósticos de WeatherKit de Apple, que se
+  autentica a través de la propia cuenta de desarrollador. Una web hecha de
+  archivos estáticos no tiene una cuenta así detrás de la que esconderse, de
+  modo que la versión web le pregunta a
+  <a href="https://open-meteo.com/">Open-Meteo</a>, que no necesita clave
+  alguna. Por qué esa única restricción da forma a toda la versión web, y por
+  qué las dos versiones pueden discrepar de vez en cuando sobre el tiempo de
+  mañana, es el tema de
+  <a href="/posts/2026-09-05-pacheco-on-the-web/">Pacheco ya está en la web</a>.</p>
+
+  <h2>Por dentro</h2>
+
+  <p><strong>iPhone.</strong> SwiftUI, Swift 6, iOS 17.2 o posterior.
+  WeatherKit para los pronósticos, SwiftData para los amigos guardados, MapKit
+  para buscar lugares. 45 tests.</p>
+
+  <p><strong>Web.</strong> Angular 22 y TypeScript. Se puede instalar, y sigue
+  funcionando sin conexión: la app, los dos idiomas y todas las fotografías
+  que ya hayas visto. Open-Meteo para los pronósticos. 190 tests.</p>
+
+  <p>Las dos versiones se llevan dos líneas de tamaño: unas 4.300 líneas cada
+  una.</p>
+
+  <h2>Consíguela</h2>
+
+  <p><a href="https://apps.apple.com/app/pacheco/id6806208255">Pacheco en el
+  App Store</a> — gratis, para iPhone, iOS 17.2 o posterior.<br>
+  <a href="/pacheco/">Pacheco en el navegador</a> — en cualquier dispositivo,
+  sin instalar nada.</p>
+
+  <p class="listing">Para la ficha del App Store:
+  <a href="https://cauriflores.github.io/support/">Soporte</a> ·
+  <a href="https://cauriflores.github.io/privacy.html">Privacidad</a></p>

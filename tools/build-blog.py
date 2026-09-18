@@ -39,7 +39,15 @@ INDEX_OUT = ROOT
 # the Writing feed, just a page reachable from nav. See src/pages/<slug>/.
 SRC_PAGES = ROOT / "src" / "pages"
 
-ASSET_VERSION = 5  # bump when style.css or lang.js changes, or browsers cache the old one
+ASSET_VERSION = 7  # bump when style.css or lang.js changes, or browsers cache the old one
+
+# One honest line on the index while the site is still taking shape. Set to
+# False to drop it everywhere at once.
+BUILDING_NOTE = True
+BUILDING_TEXT = {
+    "en": "This site is being built in the open; some pages are still taking shape.",
+    "es": "Este sitio se construye a la vista; algunas páginas todavía están tomando forma.",
+}
 
 # ⚠️ Support and Privacy are ABSOLUTE, and on a different host on purpose.
 # https://cauriflores.github.io/ is Pacheco's App Store support URL and
@@ -48,17 +56,14 @@ ASSET_VERSION = 5  # bump when style.css or lang.js changes, or browsers cache t
 # A relative href here would 404 on cauriflores.com.
 HUB = "https://cauriflores.github.io"
 NAV = [
-    ("home", "/", "Writing", "Escritos"),
-    ("pacheco", "/pacheco/", "Pacheco", "Pacheco"),
+    ("home", "/", "Updates", "Novedades"),
+    # The live Angular app stays at /pacheco/ (its deploy script rsyncs there);
+    # the nav goes to the project hub, which links to the app.
+    ("pacheco", "/pacheco-project/", "Pacheco", "Pacheco"),
     ("shopmall", "/shopmall/", "Store·Mall", "Store·Mall"),
 ]
-
-# Support and Privacy are one app's pages, not the site's — they live in a
-# footer on every page instead of the top nav, which is reserved for projects.
-FOOTER_LINKS = [
-    (f"{HUB}/support/", "Support", "Soporte"),
-    (f"{HUB}/privacy.html", "Privacy", "Privacidad"),
-]
+# Support and Privacy (the HUB pages Apple has on file) are Pacheco's, not the
+# site's: they are linked from the Pacheco hub page only, never from the chrome.
 
 MONTHS = {
     "en": "January February March April May June July August September October November December".split(),
@@ -81,14 +86,6 @@ def nav_html(current: str, lang: str, depth: int) -> str:
         else:
             links.append(f'<a href="{href}">{label}</a>')
     return "<nav>" + "".join(links) + "</nav>"
-
-
-def footer_html(lang: str) -> str:
-    links = "".join(
-        f'<a href="{href}">{en if lang == "en" else es}</a>'
-        for href, en, es in FOOTER_LINKS
-    )
-    return f"<footer>{links}</footer>"
 
 
 def page(*, title_en, title_es, description, body_en, body_es, current, depth) -> str:
@@ -120,12 +117,10 @@ def page(*, title_en, title_es, description, body_en, body_es, current, depth) -
 
   <div class="langblock" lang="en">
 {body_en}
-{footer_html('en')}
   </div>
 
   <div class="langblock" lang="es">
 {body_es}
-{footer_html('es')}
   </div>
 
 </div>
@@ -135,9 +130,26 @@ def page(*, title_en, title_es, description, body_en, body_es, current, depth) -
 """
 
 
+MAIL_USER, MAIL_DOMAIN = "commonerdev", "gmail.com"
+
+
+def write_to_me(lang: str) -> str:
+    text = (
+        "Questions, corrections, or just to say it worked for you — write to me at"
+        if lang == "en"
+        else "Preguntas, correcciones, o solo para contarme que te funcionó: escríbeme a"
+    )
+    # lang.js turns this into a mailto: link; without JavaScript it stays readable.
+    return (
+        f'  <p class="write">{text} '
+        f'<a class="mail" data-u="{MAIL_USER}" data-d="{MAIL_DOMAIN}" href="#">'
+        f"{MAIL_USER} [at] {MAIL_DOMAIN}</a>.</p>"
+    )
+
+
 def post_body(meta, body, lang, current="writing") -> str:
     title = meta["title"][lang]
-    back = "All writing" if lang == "en" else "Todos los escritos"
+    back = "All updates" if lang == "en" else "Todas las novedades"
     return f"""  <header>
     <p class="eyebrow">{long_date(meta['date'], lang)}</p>
     <h1>{html.escape(title)}</h1>
@@ -147,14 +159,40 @@ def post_body(meta, body, lang, current="writing") -> str:
 
 {body.rstrip()}
 
+{write_to_me(lang)}
+
   <p class="back"><a href="/">&larr; {back}</a></p>"""
 
 
 def project_page_body(meta, body, lang, current) -> str:
-    return f"""  <header>
-    <p class="eyebrow">{html.escape(meta['eyebrow'][lang])}</p>
-    <h1>{html.escape(meta['title'][lang])}</h1>
+    """A project hub: icon, name, tagline, the platforms it ships on, then the body.
+
+    Modelled on an App Store listing. `icon` and `platforms` in page.json are
+    optional; a platform that does not exist yet is simply not listed.
+    """
+    icon = ""
+    if meta.get("icon"):
+        icon = f'<img class="hub-icon" src="{meta["icon"]}" alt="" width="96" height="96">'
+
+    platforms = ""
+    if meta.get("platforms"):
+        label = "Available on" if lang == "en" else "Disponible en"
+        links = "".join(
+            f'<a href="{p["href"]}">{html.escape(p["label"][lang])}</a>'
+            for p in meta["platforms"]
+        )
+        platforms = f'<p class="platforms"><span>{label}</span>{links}</p>'
+
+    return f"""  <header class="hub">
+    <div class="hub-head">
+      {icon}
+      <div>
+        <p class="eyebrow">{html.escape(meta['eyebrow'][lang])}</p>
+        <h1>{html.escape(meta['title'][lang])}</h1>
+      </div>
+    </div>
     <p class="lede">{html.escape(meta['summary'][lang])}</p>
+    {platforms}
     {nav_html(current, lang, 1)}
   </header>
 
@@ -162,7 +200,7 @@ def project_page_body(meta, body, lang, current) -> str:
 
 
 def index_body(posts, lang) -> str:
-    heading = "Writing" if lang == "en" else "Escritos"
+    heading = "Updates" if lang == "en" else "Novedades"
     lede = (
         "Notes on the things I build, and how they turned out."
         if lang == "en"
@@ -181,10 +219,11 @@ def index_body(posts, lang) -> str:
         )
 
     listing = "\n".join(items) if items else f"    <p>{empty}</p>"
+    note = f'\n    <p class="building">{BUILDING_TEXT[lang]}</p>' if BUILDING_NOTE else ""
     return f"""  <header>
     <p class="eyebrow">Cauri Flores</p>
     <h1>{heading}</h1>
-    <p class="lede">{lede}</p>
+    <p class="lede">{lede}</p>{note}
     {nav_html('home', lang, 0)}
   </header>
 
@@ -232,8 +271,8 @@ def main() -> int:
 
     (INDEX_OUT / "index.html").write_text(
         page(
-            title_en="Writing — Cauri Flores",
-            title_es="Escritos — Cauri Flores",
+            title_en="Updates — Cauri Flores",
+            title_es="Novedades — Cauri Flores",
             description="Notes on the things I build, and how they turned out.",
             body_en=index_body(posts, "en"),
             body_es=index_body(posts, "es"),

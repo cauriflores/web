@@ -62,5 +62,13 @@
     });
 
     apply(preferred());
+
+    // Mail links are served in two halves so the address is not sitting in
+    // the HTML for harvesters; without JavaScript the readable fallback stays.
+    document.querySelectorAll("a.mail[data-u]").forEach(function (a) {
+      var addr = a.dataset.u + "@" + a.dataset.d;
+      a.href = "mailto:" + addr;
+      a.textContent = addr;
+    });
   });
 })();

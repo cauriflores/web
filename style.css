@@ -82,6 +82,12 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 
 .lede { color: var(--slate); font-size: 17px; }
 
+.building {
+  font-size: 14px;
+  color: var(--slate);
+  margin-top: -4px;
+}
+
 .card {
   background: var(--card);
   border: 1px solid var(--rule);
@@ -105,16 +111,6 @@ nav {
   display: flex;
   gap: 18px;
   font-size: 15px;
-}
-
-footer {
-  margin-top: 56px;
-  padding-top: 20px;
-  border-top: 1px solid var(--rule);
-  font-size: 14px;
-  color: var(--slate);
-  display: flex;
-  gap: 16px;
 }
 
 /* Email address: shown as selectable text with a copy button, so it is usable
@@ -225,8 +221,16 @@ footer {
   color: var(--slate);
 }
 
-.back {
+.write {
   margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  font-size: 15px;
+  color: var(--slate);
+}
+
+.back {
+  margin-top: 16px;
   font-size: 14px;
   color: var(--slate);
 }
@@ -255,5 +259,95 @@ nav a[aria-current="page"] {
 .shot figcaption {
   margin-top: 8px;
   font-size: 13px;
+  color: var(--slate);
+}
+
+/* ── Project hubs ─────────────────────────────────────────────────────────
+   One page per project, laid out like a store listing: icon and name, the
+   platforms it ships on, a gallery, then the technical story. */
+
+.hub-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.hub-head .eyebrow { margin-bottom: 6px; }
+.hub-head h1 { margin-bottom: 0; }
+
+.hub-icon {
+  width: 96px;
+  height: 96px;
+  flex: none;
+  border-radius: 22px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+}
+
+.hub .lede { margin-top: 16px; }
+
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  font-size: 14px;
+}
+
+.platforms span {
+  color: var(--slate);
+  margin-right: 4px;
+}
+
+.platforms a {
+  padding: 5px 13px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.platforms a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Phone screenshots side by side, the way a store shows them. On a phone they
+   become a strip that scrolls sideways, one and a bit per screen. */
+.gallery-fig { margin: 22px 0; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+}
+
+.gallery-fig figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--slate);
+}
+
+@media (max-width: 560px) {
+  .gallery {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+  }
+  .gallery img {
+    flex: 0 0 68%;
+    scroll-snap-align: start;
+  }
+}
+
+.listing {
+  margin-top: 28px;
+  font-size: 14px;
   color: var(--slate);
 }
