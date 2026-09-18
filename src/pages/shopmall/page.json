@@ -7,6 +7,14 @@
     "en": "Portfolio piece — live demo, no clients yet",
     "es": "Proyecto de portafolio — demo en vivo, sin clientes todavía"
   },
+  "icon": "mascot.png",
+  "icon_kind": "mascot",
+  "platforms": [
+    {
+      "label": { "en": "Web", "es": "Web" },
+      "href": "https://www.store-mall.com/mall"
+    }
+  ],
   "summary": {
     "en": "A multi-tenant marketplace: one Angular app serving many independent storefronts, each walled off from the others at the database level. The stores you'll see are demonstration tenants, standing in for the real ones this is built to hold.",
     "es": "Un mercado multiempresa: una sola app en Angular que da servicio a muchas tiendas independientes, aisladas entre sí a nivel de base de datos. Las tiendas que verás son inquilinas de demostración, en el lugar de las reales para las que está pensado."

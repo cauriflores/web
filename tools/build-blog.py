@@ -172,7 +172,10 @@ def project_page_body(meta, body, lang, current) -> str:
     """
     icon = ""
     if meta.get("icon"):
-        icon = f'<img class="hub-icon" src="{meta["icon"]}" alt="" width="96" height="96">'
+        # "app" (default) is a square store icon, rounded; "mascot" is a cut-out
+        # character on a transparent background, shown as-is.
+        kind = " mascot" if meta.get("icon_kind") == "mascot" else ""
+        icon = f'<img class="hub-icon{kind}" src="{meta["icon"]}" alt="" width="96" height="96">'
 
     platforms = ""
     if meta.get("platforms"):

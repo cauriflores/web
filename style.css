@@ -283,6 +283,12 @@ nav a[aria-current="page"] {
   box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
 }
 
+.hub-icon.mascot {
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: contain;
+}
+
 .hub .lede { margin-top: 16px; }
 
 .platforms {
