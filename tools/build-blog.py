@@ -317,8 +317,16 @@ def main() -> int:
             )
             # Anything besides the three source files (page.json, en.html, es.html)
             # is a static asset — screenshots, mainly — copied through as-is.
+            #
+            # Screenshots are kept here as PNG (lossless, re-encodable) but served
+            # as WebP, which is ~90% smaller at quality 82 with no visible loss on
+            # this material. So a .png whose .webp sibling exists is source, not
+            # output: it stays in the repo and is never published. Regenerate with
+            # tools/webp.py after replacing any screenshot.
             for asset in directory.iterdir():
                 if asset.name in {"page.json", "en.html", "es.html"}:
+                    continue
+                if asset.suffix.lower() == ".png" and asset.with_suffix(".webp").exists():
                     continue
                 shutil.copy2(asset, out / asset.name)
             print(f"  /{slug}/")

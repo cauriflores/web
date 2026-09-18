@@ -26,6 +26,33 @@ post or page that has only one, deliberately: every page ships both and
 changes. Assets are cache-busted with `?v=N` and browsers will otherwise serve
 the old one.
 
+## Screenshots: PNG is the source, WebP is what ships
+
+**After adding or replacing any screenshot under `src/pages/<slug>/`, run this
+before the build:**
+
+```bash
+python3 tools/webp.py          # then tools/build-blog.py as usual
+```
+
+Screenshots are kept as **PNG** — lossless, so they can be re-encoded any
+number of times without decay — and served as **WebP**, which on this material
+is around 90% smaller at quality 82 with no visible difference. The two hubs
+went from ~2.1 MB and ~2.5 MB to 138 KB and 262 KB.
+
+The split is enforced by the generator, not by memory: `build-blog.py` skips a
+`.png` whose `.webp` sibling exists, so the PNGs stay in the repo and are never
+published. **Reference the `.webp` in `en.html` / `es.html` and `page.json`,
+not the `.png`** — the PNG will not be there to serve.
+
+`tools/webp.py` only rewrites a `.webp` that is missing or older than its
+`.png`, so it is cheap to run every time; `--force` re-encodes everything after
+a `QUALITY` change. Verify a new quality at 1:1 against the original before
+trusting it — screenshot text is what degrades first.
+
+Favicons (`favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`) are site
+chrome, stay PNG/ICO, and are not part of this.
+
 ## The thing that will bite you
 
 **⚠️ `cauriflores.github.io` IS A DIFFERENT REPO AND IT IS FROZEN.** It serves

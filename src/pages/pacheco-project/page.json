@@ -11,7 +11,7 @@
     "en": "The weather where you are, and the weather where the people you care about are — each on their own clock. Built twice: a native iPhone app, and a web version for any browser, kept in step even where the two platforms disagree underneath.",
     "es": "El clima donde estás, y el clima donde está la gente que te importa, cada uno con su reloj. Construida dos veces: una app nativa para iPhone y una versión web para cualquier navegador, mantenidas a la par incluso donde las dos plataformas difieren por dentro."
   },
-  "icon": "icon.png",
+  "icon": "icon.webp",
   "platforms": [
     {
       "label": { "en": "App Store", "es": "App Store" },
