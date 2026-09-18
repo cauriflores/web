@@ -39,7 +39,7 @@ INDEX_OUT = ROOT
 # the Writing feed, just a page reachable from nav. See src/pages/<slug>/.
 SRC_PAGES = ROOT / "src" / "pages"
 
-ASSET_VERSION = 7  # bump when style.css or lang.js changes, or browsers cache the old one
+ASSET_VERSION = 8  # bump when style.css or lang.js changes, or browsers cache the old one
 
 # One honest line on the index while the site is still taking shape. Set to
 # False to drop it everywhere at once.
@@ -105,11 +105,15 @@ def page(*, title_en, title_es, description, body_en, body_es, current, depth) -
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;600&display=swap">
 <link rel="stylesheet" href="{up}style.css?v={ASSET_VERSION}">
+<script>try{{var t=localStorage.getItem("pacheco-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}}catch(e){{}}</script>
 </head>
 <body>
 <div class="wrap">
 
   <div class="langbar" hidden>
+    <button type="button" class="theme" aria-pressed="false" aria-label="Dark mode" data-label-en="Dark mode" data-label-es="Modo oscuro">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><mask id="moon-mask"><rect width="24" height="24" fill="#fff"/><circle class="mask-moon" cx="26" cy="10" r="7" fill="#000"/></mask><circle class="sun" cx="12" cy="12" r="6" fill="currentColor" mask="url(#moon-mask)"/><g class="rays" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.6" y1="4.6" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.4" y2="19.4"/><line x1="4.6" y1="19.4" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.4" y2="4.6"/></g></svg>
+    </button>
     <button type="button" data-lang="en">English</button>
     <button type="button" data-lang="es">Español</button>
   </div>

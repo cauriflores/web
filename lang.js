@@ -9,6 +9,28 @@
 // then English.
 (function () {
   var STORE = "pacheco-lang";
+  var THEME = "pacheco-theme";
+
+  function systemTheme() {
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  function savedTheme() {
+    try {
+      var t = localStorage.getItem(THEME);
+      return t === "dark" || t === "light" ? t : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    var btn = document.querySelector(".theme");
+    if (btn) btn.setAttribute("aria-pressed", String(theme === "dark"));
+  }
 
   function preferred() {
     var saved;
@@ -41,6 +63,9 @@
     // The <title> and meta description should match what is on screen.
     var title = document.querySelector('[data-title-' + lang + ']');
     if (title) document.title = title.getAttribute("data-title-" + lang);
+
+    var theme = document.querySelector(".theme");
+    if (theme) theme.setAttribute("aria-label", theme.getAttribute("data-label-" + lang));
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -49,7 +74,28 @@
 
     bar.hidden = false;
 
+    // Theme: the reader's saved choice, else the system's. Only a click is
+    // remembered, so a reader who never touches it keeps following the system.
+    applyTheme(savedTheme() || systemTheme());
+    if (window.matchMedia) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
+        if (!savedTheme()) applyTheme(systemTheme());
+      });
+    }
+
     bar.addEventListener("click", function (event) {
+      var toggle = event.target.closest(".theme");
+      if (toggle) {
+        var next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        applyTheme(next);
+        try {
+          localStorage.setItem(THEME, next);
+        } catch (e) {
+          // The choice just will not survive a reload.
+        }
+        return;
+      }
+
       var btn = event.target.closest("button[data-lang]");
       if (!btn) return;
       var lang = btn.dataset.lang;

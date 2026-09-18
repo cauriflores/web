@@ -1,4 +1,8 @@
+/* Theme. The system preference applies unless the reader has chosen one with
+   the toggle, which lang.js stores and a pre-paint script in <head> restores
+   before anything is drawn. */
 :root {
+  color-scheme: light;
   --ink: #0f151c;
   --paper: #eef1f4;
   --card: #ffffff;
@@ -7,8 +11,19 @@
   --accent: #1f6f9c;
 }
 
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #e4eaf0;
+  --paper: #0c1117;
+  --card: #141b23;
+  --slate: #8b9aa8;
+  --rule: #242f3a;
+  --accent: #6bb6de;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --ink: #e4eaf0;
     --paper: #0c1117;
     --card: #141b23;
@@ -24,6 +39,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
+  transition: background-color .35s ease, color .35s ease;
   font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 16px;
   line-height: 1.6;
@@ -171,6 +187,47 @@ nav {
   color: var(--ink);
   border-color: var(--slate);
   font-weight: 600;
+}
+
+/* Theme toggle: a sun whose rays fold away while a mask bites a crescent
+   out of it. The geometry (r, cx, cy) is animated from CSS. */
+.theme {
+  padding: 5px 8px;
+  margin-right: 8px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.theme svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  overflow: visible;
+}
+
+.theme .sun { transition: r .45s ease; }
+
+.theme .rays {
+  transform-origin: 12px 12px;
+  transition: opacity .3s ease, transform .55s ease;
+}
+
+.theme .mask-moon { transition: cx .5s ease, cy .5s ease; }
+
+:root[data-theme="dark"] .theme .sun { r: 9px; }
+
+:root[data-theme="dark"] .theme .rays {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+:root[data-theme="dark"] .theme .mask-moon {
+  cx: 17px;
+  cy: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, .theme .sun, .theme .rays, .theme .mask-moon { transition: none; }
 }
 
 /* Without JavaScript both blocks show; a rule keeps them visually separated. */

@@ -5,19 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Store·Mall</title>
 <meta name="description" content="A multi-tenant marketplace: one Angular app serving many independent storefronts, each walled off from the others at the database level. The stores you&#x27;ll see are demonstration tenants, standing in for the real ones this is built to hold.">
-<link rel="icon" href="../favicon.ico?v=7" sizes="any">
-<link rel="icon" type="image/png" href="../favicon-32.png?v=7" sizes="32x32">
-<link rel="apple-touch-icon" href="../apple-touch-icon.png?v=7">
+<link rel="icon" href="../favicon.ico?v=8" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png?v=8" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png?v=8">
 <meta name="theme-color" content="#c2185b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;600&display=swap">
-<link rel="stylesheet" href="../style.css?v=7">
+<link rel="stylesheet" href="../style.css?v=8">
+<script>try{var t=localStorage.getItem("pacheco-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
 <div class="wrap">
 
   <div class="langbar" hidden>
+    <button type="button" class="theme" aria-pressed="false" aria-label="Dark mode" data-label-en="Dark mode" data-label-es="Modo oscuro">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><mask id="moon-mask"><rect width="24" height="24" fill="#fff"/><circle class="mask-moon" cx="26" cy="10" r="7" fill="#000"/></mask><circle class="sun" cx="12" cy="12" r="6" fill="currentColor" mask="url(#moon-mask)"/><g class="rays" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.6" y1="4.6" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.4" y2="19.4"/><line x1="4.6" y1="19.4" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.4" y2="4.6"/></g></svg>
+    </button>
     <button type="button" data-lang="en">English</button>
     <button type="button" data-lang="es">Español</button>
   </div>
@@ -237,6 +241,6 @@
   </div>
 
 </div>
-<script src="../lang.js?v=7"></script>
+<script src="../lang.js?v=8"></script>
 </body>
 </html>
