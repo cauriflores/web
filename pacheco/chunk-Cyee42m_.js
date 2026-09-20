@@ -1,1 +1,0 @@
-import"./main-LIUZBLCV.js";import"./chunk-BDlj5VxW.js";import{n as st}from"./chunk-D8B7xTjF.js";export{st as Friends};
