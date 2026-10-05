@@ -1,0 +1,1 @@
+import{a as g}from"./main-APABLGIV.js";export{g as About};
