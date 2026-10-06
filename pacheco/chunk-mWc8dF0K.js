@@ -1,1 +1,0 @@
-import{o as g}from"./main-MG2LSJOM.js";export{g as About};
