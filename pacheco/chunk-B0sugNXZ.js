@@ -1,0 +1,1 @@
+import{o as g}from"./main-Q5QOLZEK.js";export{g as About};
