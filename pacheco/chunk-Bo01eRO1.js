@@ -1,0 +1,1 @@
+import{o as g}from"./main-BBDBWIBF.js";export{g as About};
