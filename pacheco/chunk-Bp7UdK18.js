@@ -1,1 +1,0 @@
-import"./main-APABLGIV.js";import"./chunk-yBz7z57g.js";import{n as st}from"./chunk-s8CXDvLQ.js";export{st as Friends};
