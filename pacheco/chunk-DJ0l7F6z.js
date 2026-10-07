@@ -1,0 +1,1 @@
+import{o as g}from"./main-4UMGVETU.js";export{g as About};

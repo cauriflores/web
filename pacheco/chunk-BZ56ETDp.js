@@ -1,0 +1,1 @@
+import{t as I}from"./main-4UMGVETU.js";export{I as Attributions};

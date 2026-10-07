@@ -64,7 +64,6 @@
   "No Friends / places": "No hay contactos ni lugares ",
   "Note": "Nota",
   "Notes": "Notas",
-  "One photograph has been modified.": "Una fotografía ha sido modificada.",
   "Open Settings": "Abrir Ajustes",
   "Pacheco could not reach the weather service. Check your connection and try again.": "Pacheco no ha podido conectar con el servicio meteorológico. Comprueba tu conexión y vuelve a intentarlo.",
   "Pacheco could not work out where you are, so it has no local weather to show.": "Pacheco no ha podido determinar dónde estás, así que no puede mostrar el clima local.",
@@ -102,5 +101,6 @@
   "Windy": "Viento fuerte",
   "Location access is blocked": "El acceso a tu ubicación está bloqueado",
   "Allow location for this site in your browser, then try again. The control is usually the icon at the left of the address bar.": "Permite el acceso a la ubicación para este sitio en tu navegador y vuelve a intentarlo. El control suele ser el icono a la izquierda de la barra de direcciones.",
-  "This browser cannot share your location.": "Este navegador no puede compartir tu ubicación."
+  "This browser cannot share your location.": "Este navegador no puede compartir tu ubicación.",
+  "Some photographs have been adapted to the screens they are shown on: cropped or turned to fit, and adjusted for brightness and contrast so the readings stay legible over them. One has been altered to a night scene.": "Algunas fotografías se han adaptado a las pantallas en las que se muestran: recortadas o giradas para encajar, y ajustadas de brillo y contraste para que las lecturas sigan siendo legibles sobre ellas. Una ha sido alterada para convertirla en una escena nocturna."
 }

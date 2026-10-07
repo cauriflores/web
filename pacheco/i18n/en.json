@@ -64,7 +64,6 @@
   "No Friends / places": "No Friends / places",
   "Note": "Note",
   "Notes": "Notes",
-  "One photograph has been modified.": "One photograph has been modified.",
   "Open Settings": "Open Settings",
   "Pacheco could not reach the weather service. Check your connection and try again.": "Pacheco could not reach the weather service. Check your connection and try again.",
   "Pacheco could not work out where you are, so it has no local weather to show.": "Pacheco could not work out where you are, so it has no local weather to show.",
@@ -102,5 +101,6 @@
   "Windy": "Windy",
   "Location access is blocked": "Location access is blocked",
   "Allow location for this site in your browser, then try again. The control is usually the icon at the left of the address bar.": "Allow location for this site in your browser, then try again. The control is usually the icon at the left of the address bar.",
-  "This browser cannot share your location.": "This browser cannot share your location."
+  "This browser cannot share your location.": "This browser cannot share your location.",
+  "Some photographs have been adapted to the screens they are shown on: cropped or turned to fit, and adjusted for brightness and contrast so the readings stay legible over them. One has been altered to a night scene.": "Some photographs have been adapted to the screens they are shown on: cropped or turned to fit, and adjusted for brightness and contrast so the readings stay legible over them. One has been altered to a night scene."
 }
