@@ -1,0 +1,1 @@
+import{t as I}from"./main-LXJOFOW4.js";export{I as Attributions};
