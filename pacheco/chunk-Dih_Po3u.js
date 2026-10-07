@@ -1,1 +1,0 @@
-import{o as g}from"./main-LXJOFOW4.js";export{g as About};

@@ -1,0 +1,1 @@
+import"./main-RDU32XW2.js";import"./chunk-BFcSM9eM.js";import{n as ht}from"./chunk-DlulONGj.js";export{ht as Friends};
