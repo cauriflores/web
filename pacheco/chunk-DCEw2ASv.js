@@ -1,0 +1,1 @@
+import{o as g}from"./main-2AO5ZPHQ.js";export{g as About};
