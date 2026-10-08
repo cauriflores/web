@@ -1,1 +1,0 @@
-import{o as g}from"./main-DEPXW7IK.js";export{g as About};

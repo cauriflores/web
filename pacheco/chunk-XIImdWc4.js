@@ -1,0 +1,1 @@
+import{o as g}from"./main-CY5YZWQS.js";export{g as About};
