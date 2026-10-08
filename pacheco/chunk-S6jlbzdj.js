@@ -1,0 +1,1 @@
+import{o as g}from"./main-R5IFTKW7.js";export{g as About};
