@@ -1,0 +1,1 @@
+import{o as g}from"./main-KVTCFKWV.js";export{g as About};
