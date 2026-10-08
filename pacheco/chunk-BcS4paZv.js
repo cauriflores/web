@@ -1,0 +1,1 @@
+import"./main-QXGDOHYT.js";import"./chunk-CdFfKMbi.js";import{t as ht}from"./chunk-BLKlM8V0.js";export{ht as Friends};

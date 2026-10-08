@@ -1,1 +1,0 @@
-import{t as I}from"./main-R5IFTKW7.js";export{I as Attributions};

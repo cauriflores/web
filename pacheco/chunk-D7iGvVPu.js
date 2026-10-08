@@ -1,0 +1,1 @@
+import{o as g}from"./main-QXGDOHYT.js";export{g as About};
