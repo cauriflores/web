@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-11",
+  "title": {
+    "en": "Minitemp, a thermal widget for the Mac mini",
+    "es": "Minitemp, un widget térmico para el Mac mini"
+  },
+  "summary": {
+    "en": "A desktop widget that records thermal pressure, chip temperature, the CPU speed limit, and the last twelve hours of those parameters.",
+    "es": "Un widget de escritorio que registra la presión térmica, la temperatura del chip, el límite de velocidad de la CPU, y las últimas doce horas de estos parámetros."
+  }
+}

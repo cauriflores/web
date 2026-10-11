@@ -13,8 +13,8 @@ no CI.
 python3 tools/build-blog.py   # then commit the generated files
 ```
 
-It reads `src/posts/<slug>/` (`post.json` + `en.html` + `es.html`) and writes
-`index.html` at the root (the Updates / Novedades index) and
+It reads `src/posts/<slug>/` (`post.json` + `en.html` + `es.html` + any images)
+and writes `index.html` at the root (the Updates / Novedades index) and
 `posts/<slug>/index.html`. It also reads `src/pages/<slug>/` (`page.json` +
 `en.html` + `es.html` + any images) and writes a standing **project hub** at
 `/<slug>/` — icon, platforms row, gallery, technical story — not dated and
@@ -26,10 +26,21 @@ post or page that has only one, deliberately: every page ships both and
 changes. Assets are cache-busted with `?v=N` and browsers will otherwise serve
 the old one.
 
+## `src/drafts/` is staging, and the build cannot see it
+
+`build-blog.py` reads `src/posts/` and `src/pages/` only, so anything under
+`src/drafts/` is invisible to it and cannot reach the site by accident.
+
+That is where work waits when it is written but must not publish yet — an App
+Store release that is still in review, most often. `src/drafts/README.md` says
+what is parked there and what to do on the day it goes live. A single wide
+screenshot uses `<figure class="shot">`; `.gallery` is a fixed three-column
+grid and will squash one image into a third of the width.
+
 ## Screenshots: PNG is the source, WebP is what ships
 
-**After adding or replacing any screenshot under `src/pages/<slug>/`, run this
-before the build:**
+**After adding or replacing any screenshot under `src/pages/<slug>/` or
+`src/posts/<slug>/`, run this before the build:**
 
 ```bash
 python3 tools/webp.py          # then tools/build-blog.py as usual
@@ -45,8 +56,9 @@ The split is enforced by the generator, not by memory: `build-blog.py` skips a
 published. **Reference the `.webp` in `en.html` / `es.html` and `page.json`,
 not the `.png`** — the PNG will not be there to serve.
 
-`tools/webp.py` only rewrites a `.webp` that is missing or older than its
-`.png`, so it is cheap to run every time; `--force` re-encodes everything after
+`tools/webp.py` covers `src/pages/` and `src/posts/` alike, and only rewrites a
+`.webp` that is missing or older than its `.png`, so it is cheap to run every
+time; `--force` re-encodes everything after
 a `QUALITY` change. Verify a new quality at 1:1 against the original before
 trusting it — screenshot text is what degrades first.
 

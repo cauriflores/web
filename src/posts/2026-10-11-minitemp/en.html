@@ -1,0 +1,52 @@
+  <p>Minitemp is a desktop widget that records thermal pressure, chip
+  temperature, how much processor speed the system is holding back, and the
+  last twelve hours of those parameters.</p>
+
+  <figure class="shot">
+    <img src="window.webp" alt="The Minitemp window: thermal pressure Nominal at 36 °C, a 12-hour chart flat along Nominal with one brief step up to Fair in the late afternoon, and a footer reading 232 samples, last 19:28.">
+    <figcaption>The companion window reads the same twelve hours the widget
+    draws. One step up to Fair in the late afternoon; Nominal the rest of the
+    day.</figcaption>
+  </figure>
+
+  <h2>What it shows</h2>
+
+  <p>The medium widget shows the level in words — Nominal, Fair, Serious,
+  Critical — the chip temperature, the CPU speed limit, and twelve hours of
+  history as a sparkline with the peak reading of that window.</p>
+
+  <p>The large widget shows the same history as a full chart, with a dashed
+  rule at the Nominal threshold, and four figures: the worst level reached,
+  time spent above Nominal, the CPU speed limit, and the fan.</p>
+
+  <h2>Where the numbers come from</h2>
+
+  <p>Minitemp runs without root, without a kernel extension, and without
+  touching the System Management Controller.</p>
+
+  <p>The base reading is <code>ProcessInfo.thermalState</code>: available to any
+  app, no entitlement required, and the same four-level signal macOS acts on.
+  Two readings are added to it. The CPU speed limit comes from
+  <code>pmset -g therm</code>, which needs no root on Apple Silicon. The chip
+  temperature comes from the IOKit HID sensor services — undocumented, but
+  readable without privileges.</p>
+
+  <p>The temperature can be missing; the widget omits it rather than
+  substituting a value. The CPU limit shows 100% when there is nothing to
+  report.</p>
+
+  <h2>What it does not know</h2>
+
+  <p>The fan. The widget and the window both reserve a place for it and both
+  show a dash: nothing reads it yet.</p>
+
+  <h2>Under the hood</h2>
+
+  <p>SwiftUI and WidgetKit, Swift Charts for both charts, 1,326 lines, macOS 27.
+  The app and the widget are separate processes, so the history lives in an App
+  Group both can reach: twelve hours retained, older samples dropped.</p>
+
+  <p>The two write at different rates. The app samples every minute while it is
+  open. The widget samples on each refresh, every fifteen minutes, open or not.
+  The window above holds 232 samples; twelve full hours at one a minute would
+  hold 720.</p>

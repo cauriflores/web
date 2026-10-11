@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minitemp, a thermal widget for the Mac mini</title>
+<meta name="description" content="A desktop widget that records thermal pressure, chip temperature, the CPU speed limit, and the last twelve hours of those parameters.">
+<link rel="icon" href="../../favicon.ico?v=8" sizes="any">
+<link rel="icon" type="image/png" href="../../favicon-32.png?v=8" sizes="32x32">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=8">
+<meta name="theme-color" content="#c2185b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="../../style.css?v=8">
+<script>try{var t=localStorage.getItem("pacheco-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="langbar" hidden>
+    <button type="button" class="theme" aria-pressed="false" aria-label="Dark mode" data-label-en="Dark mode" data-label-es="Modo oscuro">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><mask id="moon-mask"><rect width="24" height="24" fill="#fff"/><circle class="mask-moon" cx="26" cy="10" r="7" fill="#000"/></mask><circle class="sun" cx="12" cy="12" r="6" fill="currentColor" mask="url(#moon-mask)"/><g class="rays" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.6" y1="4.6" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.4" y2="19.4"/><line x1="4.6" y1="19.4" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.4" y2="4.6"/></g></svg>
+    </button>
+    <button type="button" data-lang="en">English</button>
+    <button type="button" data-lang="es">Español</button>
+  </div>
+  <span hidden data-title-en="Minitemp, a thermal widget for the Mac mini" data-title-es="Minitemp, un widget térmico para el Mac mini"></span>
+
+  <div class="langblock" lang="en">
+  <header>
+    <p class="eyebrow">October 11, 2026</p>
+    <h1>Minitemp, a thermal widget for the Mac mini</h1>
+    <p class="lede">A desktop widget that records thermal pressure, chip temperature, the CPU speed limit, and the last twelve hours of those parameters.</p>
+    <nav><a href="/">Updates</a><a href="/pacheco-project/">Pacheco</a><a href="/shopmall/">Store·Mall</a></nav>
+  </header>
+
+  <p>Minitemp is a desktop widget that records thermal pressure, chip
+  temperature, how much processor speed the system is holding back, and the
+  last twelve hours of those parameters.</p>
+
+  <figure class="shot">
+    <img src="window.webp" alt="The Minitemp window: thermal pressure Nominal at 36 °C, a 12-hour chart flat along Nominal with one brief step up to Fair in the late afternoon, and a footer reading 232 samples, last 19:28.">
+    <figcaption>The companion window reads the same twelve hours the widget
+    draws. One step up to Fair in the late afternoon; Nominal the rest of the
+    day.</figcaption>
+  </figure>
+
+  <h2>What it shows</h2>
+
+  <p>The medium widget shows the level in words — Nominal, Fair, Serious,
+  Critical — the chip temperature, the CPU speed limit, and twelve hours of
+  history as a sparkline with the peak reading of that window.</p>
+
+  <p>The large widget shows the same history as a full chart, with a dashed
+  rule at the Nominal threshold, and four figures: the worst level reached,
+  time spent above Nominal, the CPU speed limit, and the fan.</p>
+
+  <h2>Where the numbers come from</h2>
+
+  <p>Minitemp runs without root, without a kernel extension, and without
+  touching the System Management Controller.</p>
+
+  <p>The base reading is <code>ProcessInfo.thermalState</code>: available to any
+  app, no entitlement required, and the same four-level signal macOS acts on.
+  Two readings are added to it. The CPU speed limit comes from
+  <code>pmset -g therm</code>, which needs no root on Apple Silicon. The chip
+  temperature comes from the IOKit HID sensor services — undocumented, but
+  readable without privileges.</p>
+
+  <p>The temperature can be missing; the widget omits it rather than
+  substituting a value. The CPU limit shows 100% when there is nothing to
+  report.</p>
+
+  <h2>What it does not know</h2>
+
+  <p>The fan. The widget and the window both reserve a place for it and both
+  show a dash: nothing reads it yet.</p>
+
+  <h2>Under the hood</h2>
+
+  <p>SwiftUI and WidgetKit, Swift Charts for both charts, 1,326 lines, macOS 27.
+  The app and the widget are separate processes, so the history lives in an App
+  Group both can reach: twelve hours retained, older samples dropped.</p>
+
+  <p>The two write at different rates. The app samples every minute while it is
+  open. The widget samples on each refresh, every fifteen minutes, open or not.
+  The window above holds 232 samples; twelve full hours at one a minute would
+  hold 720.</p>
+
+  <p class="write">Questions, corrections, or just to say it worked for you — write to me at <a class="mail" data-u="commonerdev" data-d="gmail.com" href="#">commonerdev [at] gmail.com</a>.</p>
+
+  <p class="back"><a href="/">&larr; All updates</a></p>
+  </div>
+
+  <div class="langblock" lang="es">
+  <header>
+    <p class="eyebrow">11 de octubre de 2026</p>
+    <h1>Minitemp, un widget térmico para el Mac mini</h1>
+    <p class="lede">Un widget de escritorio que registra la presión térmica, la temperatura del chip, el límite de velocidad de la CPU, y las últimas doce horas de estos parámetros.</p>
+    <nav><a href="/">Novedades</a><a href="/pacheco-project/">Pacheco</a><a href="/shopmall/">Store·Mall</a></nav>
+  </header>
+
+  <p>Minitemp es un widget de escritorio que registra la presión térmica, la
+  temperatura del chip, cuánta velocidad del procesador retiene el sistema, y
+  el histórico con las últimas doce horas de estos parámetros.</p>
+
+  <figure class="shot">
+    <img src="window.webp" alt="La ventana de Minitemp: presión térmica Nominal a 36 °C, una gráfica de 12 horas plana en Nominal con un único escalón breve hasta Fair a última hora de la tarde, y un pie que indica 232 muestras, última a las 19:28.">
+    <figcaption>La ventana acompañante lee las mismas doce horas que dibuja el
+    widget. Una subida a Fair a última hora de la tarde; el resto del día en
+    Nominal.</figcaption>
+  </figure>
+
+  <h2>Qué muestra</h2>
+
+  <p>El widget mediano muestra el nivel en palabras —Nominal, Fair, Serious,
+  Critical—, la temperatura del chip, el límite de velocidad de la CPU, y doce
+  horas de histórico en una línea resumida con la lectura máxima de esa
+  ventana.</p>
+
+  <p>El grande muestra ese mismo histórico en una gráfica completa, con una
+  línea discontinua en el umbral de Nominal, y cuatro cifras: el peor nivel
+  alcanzado, el tiempo por encima de Nominal, el límite de velocidad de la CPU,
+  y el ventilador.</p>
+
+  <h2>De dónde salen los números</h2>
+
+  <p>Minitemp funciona sin root, sin extensión de kernel y sin tocar el System
+  Management Controller.</p>
+
+  <p>La lectura base es <code>ProcessInfo.thermalState</code>: accesible para
+  cualquier app, sin <i lang="en">entitlement</i>, y es la misma señal de cuatro
+  niveles sobre la que actúa macOS. A eso se le añaden dos lecturas. El límite
+  de velocidad de la CPU sale de <code>pmset -g therm</code>, que no necesita
+  root en Apple Silicon. La temperatura del chip sale de los servicios de
+  sensores HID de IOKit: no documentados, pero legibles sin privilegios.</p>
+
+  <p>La temperatura puede faltar; el widget la omite en lugar de sustituirla por
+  un valor. El límite de la CPU muestra 100 % cuando no hay nada que
+  informar.</p>
+
+  <h2>Qué no sabe</h2>
+
+  <p>El ventilador. El widget y la ventana le reservan un sitio y los dos
+  muestran un guion: todavía no hay nada que lo lea.</p>
+
+  <h2>Por dentro</h2>
+
+  <p>SwiftUI y WidgetKit, Swift Charts para las dos gráficas, 1.326 líneas,
+  macOS 27. La app y el widget son procesos distintos, así que el histórico vive
+  en un App Group al que llegan los dos: doce horas retenidas, las muestras más
+  antiguas se descartan.</p>
+
+  <p>Los dos escriben a ritmos distintos. La app toma una muestra por minuto
+  mientras está abierta. El widget toma una en cada actualización, cada quince
+  minutos, esté abierta o no. La ventana de arriba tiene 232 muestras; doce
+  horas completas a una por minuto serían 720.</p>
+
+  <p class="write">Preguntas, correcciones, o solo para contarme que te funcionó: escríbeme a <a class="mail" data-u="commonerdev" data-d="gmail.com" href="#">commonerdev [at] gmail.com</a>.</p>
+
+  <p class="back"><a href="/">&larr; Todas las novedades</a></p>
+  </div>
+
+</div>
+<script src="../../lang.js?v=8"></script>
+</body>
+</html>

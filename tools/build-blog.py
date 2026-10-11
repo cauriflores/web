@@ -18,6 +18,9 @@ Each post is a directory under src/posts/<slug>/ holding:
     en.html     the body, as HTML fragments — no <html>, no <body>
     es.html     the same in Spanish
 
+Anything else in the directory is a screenshot and is copied through, the same
+way a page's is — see copy_assets.
+
 Both languages ship in every page and stack without JavaScript, which is how
 the rest of this site already works: nobody is left without something readable.
 """
@@ -69,6 +72,26 @@ MONTHS = {
     "en": "January February March April May June July August September October November December".split(),
     "es": "enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre".split(),
 }
+
+
+def copy_assets(directory: Path, out: Path, sources: set[str]) -> None:
+    """Copy a source directory's images through to its published directory.
+
+    Anything that is not one of the directory's own source files is a static
+    asset — screenshots, mainly — copied as-is.
+
+    Screenshots are kept here as PNG (lossless, re-encodable) but served as
+    WebP, which is ~90% smaller at quality 82 with no visible loss on this
+    material. So a .png whose .webp sibling exists is source, not output: it
+    stays in the repo and is never published. Regenerate with tools/webp.py
+    after replacing any screenshot.
+    """
+    for asset in directory.iterdir():
+        if asset.name in sources:
+            continue
+        if asset.suffix.lower() == ".png" and asset.with_suffix(".webp").exists():
+            continue
+        shutil.copy2(asset, out / asset.name)
 
 
 def long_date(iso: str, lang: str) -> str:
@@ -274,6 +297,7 @@ def main() -> int:
                 depth=2,
             )
         )
+        copy_assets(directory, out, {"post.json", "en.html", "es.html"})
         print(f"  /posts/{slug}/")
 
     (INDEX_OUT / "index.html").write_text(
@@ -315,20 +339,7 @@ def main() -> int:
                     depth=1,
                 )
             )
-            # Anything besides the three source files (page.json, en.html, es.html)
-            # is a static asset — screenshots, mainly — copied through as-is.
-            #
-            # Screenshots are kept here as PNG (lossless, re-encodable) but served
-            # as WebP, which is ~90% smaller at quality 82 with no visible loss on
-            # this material. So a .png whose .webp sibling exists is source, not
-            # output: it stays in the repo and is never published. Regenerate with
-            # tools/webp.py after replacing any screenshot.
-            for asset in directory.iterdir():
-                if asset.name in {"page.json", "en.html", "es.html"}:
-                    continue
-                if asset.suffix.lower() == ".png" and asset.with_suffix(".webp").exists():
-                    continue
-                shutil.copy2(asset, out / asset.name)
+            copy_assets(directory, out, {"page.json", "en.html", "es.html"})
             print(f"  /{slug}/")
 
     return 0
