@@ -319,6 +319,14 @@ nav a[aria-current="page"] {
   color: var(--slate);
 }
 
+/* A small object — a widget — shown near its real size instead of stretched to
+   the column. These captures are 2x, so the full 680px column would render them
+   at 1:1 and soft; 344px is the medium widget's own width in points, which puts
+   both back at 2x. */
+.shot.narrow img {
+  max-width: 344px;
+}
+
 /* ── Project hubs ─────────────────────────────────────────────────────────
    One page per project, laid out like a store listing: icon and name, the
    platforms it ships on, a gallery, then the technical story. */

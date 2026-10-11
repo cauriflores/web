@@ -42,7 +42,7 @@ INDEX_OUT = ROOT
 # the Writing feed, just a page reachable from nav. See src/pages/<slug>/.
 SRC_PAGES = ROOT / "src" / "pages"
 
-ASSET_VERSION = 8  # bump when style.css or lang.js changes, or browsers cache the old one
+ASSET_VERSION = 9  # bump when style.css or lang.js changes, or browsers cache the old one
 
 # One honest line on the index while the site is still taking shape. Set to
 # False to drop it everywhere at once.

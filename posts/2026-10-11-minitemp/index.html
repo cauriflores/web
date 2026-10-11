@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Minitemp, a thermal widget for the Mac mini</title>
 <meta name="description" content="A desktop widget that records thermal pressure, chip temperature, the CPU speed limit, and the last twelve hours of those parameters.">
-<link rel="icon" href="../../favicon.ico?v=8" sizes="any">
-<link rel="icon" type="image/png" href="../../favicon-32.png?v=8" sizes="32x32">
-<link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=8">
+<link rel="icon" href="../../favicon.ico?v=9" sizes="any">
+<link rel="icon" type="image/png" href="../../favicon-32.png?v=9" sizes="32x32">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=9">
 <meta name="theme-color" content="#c2185b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;600&display=swap">
-<link rel="stylesheet" href="../../style.css?v=8">
+<link rel="stylesheet" href="../../style.css?v=9">
 <script>try{var t=localStorage.getItem("pacheco-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
@@ -52,9 +52,24 @@
   Critical — the chip temperature, the CPU speed limit, and twelve hours of
   history as a sparkline with the peak reading of that window.</p>
 
+  <figure class="shot narrow">
+    <img src="widget-medium.webp" alt="The medium Minitemp widget: Thermal Pressure Nominal, 36 °C, Fan dash, CPU limit 100%, updated 21:34, and a 12-hour sparkline with one spike, marked Peak 47 °C.">
+    <figcaption>The medium widget on the desktop.</figcaption>
+  </figure>
+
   <p>The large widget shows the same history as a full chart, with a dashed
   rule at the Nominal threshold, and four figures: the worst level reached,
   time spent above Nominal, the CPU speed limit, and the fan.</p>
+
+  <figure class="shot narrow">
+    <img src="widget-large.webp" alt="The large Minitemp widget: Nominal at 37 °C, a 12-hour chart from 12 to 21 with one step up to Fair, a dashed line labelled Leaves Nominal, and four tiles reading Peak Fair, Above Nominal 18m, CPU Limit 100%, Fan dash.">
+    <figcaption>The large widget. Eighteen minutes above Nominal in twelve
+    hours, all of it in the one spike.</figcaption>
+  </figure>
+
+  <p>Both are drawn in the desktop's tinted style, so the colour the level
+  carries in the app window — green for Nominal, red for Critical — is not
+  there. The wallpaper shows through instead.</p>
 
   <h2>Where the numbers come from</h2>
 
@@ -119,10 +134,25 @@
   horas de histórico en una línea resumida con la lectura máxima de esa
   ventana.</p>
 
+  <figure class="shot narrow">
+    <img src="widget-medium.webp" alt="El widget mediano de Minitemp: Thermal Pressure Nominal, 36 °C, Fan guion, CPU limit 100 %, actualizado a las 21:34, y una línea resumida de 12 horas con un único pico, marcada Peak 47 °C.">
+    <figcaption>El widget mediano en el escritorio.</figcaption>
+  </figure>
+
   <p>El grande muestra ese mismo histórico en una gráfica completa, con una
   línea discontinua en el umbral de Nominal, y cuatro cifras: el peor nivel
   alcanzado, el tiempo por encima de Nominal, el límite de velocidad de la CPU,
   y el ventilador.</p>
+
+  <figure class="shot narrow">
+    <img src="widget-large.webp" alt="El widget grande de Minitemp: Nominal a 37 °C, una gráfica de 12 horas de las 12 a las 21 con un escalón hasta Fair, una línea discontinua rotulada Leaves Nominal, y cuatro casillas con Peak Fair, Above Nominal 18m, CPU Limit 100 %, Fan guion.">
+    <figcaption>El widget grande. Dieciocho minutos por encima de Nominal en
+    doce horas, todos en el mismo pico.</figcaption>
+  </figure>
+
+  <p>Los dos se dibujan con el tintado del escritorio, así que el color que
+  lleva el nivel en la ventana de la app —verde en Nominal, rojo en Critical—
+  no aparece. Lo que se ve detrás es el fondo de escritorio.</p>
 
   <h2>De dónde salen los números</h2>
 
@@ -163,6 +193,6 @@
   </div>
 
 </div>
-<script src="../../lang.js?v=8"></script>
+<script src="../../lang.js?v=9"></script>
 </body>
 </html>
