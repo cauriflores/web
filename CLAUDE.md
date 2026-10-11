@@ -26,16 +26,22 @@ post or page that has only one, deliberately: every page ships both and
 changes. Assets are cache-busted with `?v=N` and browsers will otherwise serve
 the old one.
 
-## `src/drafts/` is staging, and the build cannot see it
+## `src/drafts/` is staging — the build cannot see it, the web can
 
 `build-blog.py` reads `src/posts/` and `src/pages/` only, so anything under
-`src/drafts/` is invisible to it and cannot reach the site by accident.
+`src/drafts/` can never become a page, reach Updates, or be linked from the
+site. That is where work waits when it is written but must not publish yet —
+an App Store release still in review, most often. `src/drafts/README.md` says
+what is parked there and what to do on the day it goes live.
 
-That is where work waits when it is written but must not publish yet — an App
-Store release that is still in review, most often. `src/drafts/README.md` says
-what is parked there and what to do on the day it goes live. A single wide
-screenshot uses `<figure class="shot">`; `.gallery` is a fixed three-column
-grid and will squash one image into a third of the width.
+**Unpublished is not unreachable.** `.nojekyll` means Pages serves the repo
+root verbatim, so every source file under `src/` is fetchable at its own path
+— `/src/drafts/…/en.html` returns 200 — and this repo is public. Staging
+keeps something off the site, not out of sight. Anything that genuinely must
+not be readable yet belongs somewhere else entirely.
+
+A single wide screenshot uses `<figure class="shot">`; `.gallery` is a fixed
+three-column grid and will squash one image into a third of the width.
 
 ## Screenshots: PNG is the source, WebP is what ships
 

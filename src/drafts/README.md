@@ -1,8 +1,15 @@
-# Staged — not published, on purpose
+# Staged — kept out of the generated site, on purpose
 
 `build-blog.py` reads `src/posts/` and `src/pages/` and nothing else, so
-everything in this directory is invisible to the build. Nothing here can reach
-the site by accident.
+nothing here can become a page, appear in Updates, or be linked from the site
+by accident.
+
+**It is not private, though.** Pages serves the repo root verbatim, so these
+files are fetchable as raw files —
+`https://cauriflores.com/src/drafts/pacheco-1-1-post/en.html` answers 200 —
+and the repo is public anyway. That is true of all of `src/`. Unlinked and
+unindexed is the whole of the protection. Anything that genuinely must not be
+readable before a date does not belong in this repo.
 
 It holds the Pacheco 1.1 work, written on 2026-10-11 while **1.1 (6) was
 Waiting for Review with manual release**. The App Store was still serving 1.0
