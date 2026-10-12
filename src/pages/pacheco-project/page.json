@@ -8,8 +8,8 @@
     "es": "En el App Store, y en el navegador"
   },
   "summary": {
-    "en": "The local weather where you are, and weather information for where the people you care about are, each in its own time zone. They include a native iPhone app and a web version for any browser, kept in step.",
-    "es": "El clima local donde estás, y la información del clima donde está la gente que te importa, cada uno en su franja horaria. Incluyen una app nativa para iPhone y una versión web para cualquier navegador, mantenidas a la par."
+    "en": "The local weather where you are, and weather information for where the people you care about are, each in its own time zone. They include a native iPhone app and a web version for any browser.",
+    "es": "El clima local donde estás, y la información del clima donde está la gente que te importa, cada uno en su franja horaria. Incluyen una app nativa para iPhone y una versión web para cualquier navegador."
   },
   "icon": "icon.webp",
   "platforms": [
