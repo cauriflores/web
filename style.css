@@ -391,6 +391,14 @@ nav a[aria-current="page"] {
   gap: 12px;
 }
 
+/* A pair of phone screenshots instead of the usual three. Capped at 450px so
+   each one lands at the same ~219px the hub galleries give their three, rather
+   than growing to half the column and dwarfing them. */
+.gallery.two {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 450px;
+}
+
 .gallery img {
   display: block;
   width: 100%;
