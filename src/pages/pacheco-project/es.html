@@ -16,46 +16,36 @@
   nombre se quedó pegado a la temporada. La app lleva el nombre de la
   expresión, no del florista.</p>
 
-  <h2>Dos plataformas, un solo juego de números</h2>
+  <h2>La app de iPhone</h2>
 
-  <p>SwiftUI y Angular no pueden compartir un runtime, así que las dos
-  versiones no pueden compartir el código de lo que hace que la app se sienta
-  como ella misma: la lluvia y la nieve que caen sobre una fotografía, el
-  viento que la desplaza despacio, el degradado que mantiene el texto legible
-  encima. Lo que comparten son los <em>números</em>: la misma cantidad de
-  partículas, la misma intensidad del degradado, cambiados en los dos sitios a
-  la vez o en ninguno. Es una disciplina, no una garantía del compilador, y ha
-  aguantado.</p>
+  <p>SwiftUI, Swift 6, iOS 26 o posterior. WeatherKit para los pronósticos,
+  SwiftData para los amigos guardados, MapKit para buscar lugares. Unas 4.500
+  líneas, 66 tests.</p>
 
-  <p>La mayor parte de la app va así, a la par. Lo que todavía no: catorce de
-  las fotografías vienen de una tanda anterior y tienen menos resolución que
-  el resto. Se nota si miras de cerca, no a simple vista. Están en la
-  lista.</p>
+  <p>Cada pantalla se construye sobre una fotografía de la condición actual:
+  la lluvia y la nieve caen encima, el viento la desplaza despacio, y un
+  degradado mantiene legibles los datos. Cuatro de esas fotografías siguen
+  siendo los archivos originales de 393×852, sobre todo detrás de tormentas
+  nocturnas y nieve.</p>
 
-  <h2>Qué cambia por dentro</h2>
+  <p>Desde la 1.1, un día del pronóstico de 9 días y una hora del de 24 horas
+  se abren cada uno en su propia pantalla, y a un amigo se le puede situar
+  escribiendo coordenadas.</p>
 
-  <p>La app de iPhone obtiene los pronósticos de WeatherKit de Apple, que se
-  autentica a través de la propia cuenta de desarrollador. Una web hecha de
-  archivos estáticos no tiene una cuenta así detrás de la que esconderse, de
-  modo que la versión web le pregunta a
-  <a href="https://open-meteo.com/">Open-Meteo</a>, que no necesita clave
-  alguna. Por qué esa única restricción da forma a toda la versión web, y por
-  qué las dos versiones pueden discrepar de vez en cuando sobre el tiempo de
-  mañana, es el tema de
-  <a href="/posts/2026-09-05-pacheco-on-the-web/">Pacheco ya está en la web</a>.</p>
+  <h2>La versión web</h2>
 
-  <h2>Por dentro</h2>
+  <p>Angular 22 y TypeScript. Se puede instalar, y sigue funcionando sin
+  conexión: la app, los dos idiomas y todas las fotografías que ya hayas visto.
+  Unas 6.300 líneas, 199 tests. Sus fotografías están todas a tamaño completo,
+  y tiene un diseño de escritorio que el teléfono no necesita.</p>
 
-  <p><strong>iPhone.</strong> SwiftUI, Swift 6, iOS 26 o posterior.
-  WeatherKit para los pronósticos, SwiftData para los amigos guardados, MapKit
-  para buscar lugares. 66 tests.</p>
-
-  <p><strong>Web.</strong> Angular 22 y TypeScript. Se puede instalar, y sigue
-  funcionando sin conexión: la app, los dos idiomas y todas las fotografías
-  que ya hayas visto. Open-Meteo para los pronósticos. 199 tests.</p>
-
-  <p>La app de iPhone tiene unas 4.500 líneas. La web tiene unas 6.300:
-  también incluye un diseño de escritorio que el teléfono no necesita.</p>
+  <p>Sus pronósticos vienen de <a href="https://open-meteo.com/">Open-Meteo</a>
+  y no de WeatherKit, porque una web hecha de archivos estáticos no puede
+  guardar una clave de API. Esa única restricción da forma a todo el proyecto,
+  y es la razón de que el navegador pueda decirte otra cosa sobre el tiempo de
+  mañana:
+  <a href="/posts/2026-09-05-pacheco-on-the-web/">Pacheco ya está en la web</a>
+  trata las dos cosas.</p>
 
   <h2>Consíguela</h2>
 
