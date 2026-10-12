@@ -1,0 +1,153 @@
+#!/usr/bin/env python3
+"""Refuse any commit that alters the two URLs Apple has on file.
+
+`https://cauriflores.github.io/` is Pacheco's App Store **support URL** and
+`/privacy.html` the **privacy policy** Apple checks. Both live in a different,
+frozen repo. This repo cannot write those pages — but it links to them, and a
+link that 404s is as broken as a missing page. Changing the Support URL is a
+version-level field in App Store Connect: it costs a new build and a full App
+Review of the whole app.
+
+This hook exists because on 2026-10-12, while rewriting the Spanish hub page in
+a plainer voice, `privacy.html` was translated to `privacidad` — treating a URL
+as if it were prose. It was caught by hand before committing. This catches it
+without relying on noticing.
+
+Two checks, against the STAGED content rather than the working tree:
+
+  1. Every cauriflores.github.io URL in any staged file is one of the two known
+     good ones. A typo, a translation or a new path is refused.
+  2. Any staged hub page still carries both of them. Deleting the listing line
+     is refused too.
+
+`git commit --no-verify` is the deliberate escape.
+
+Wired with `git config core.hooksPath .githooks`. **That config is local and
+does NOT survive a fresh clone** — re-run it after cloning or this is silently
+inactive.
+"""
+
+import re
+import subprocess
+import sys
+
+HOST = "cauriflores.github.io"
+
+# The root is the Support URL Apple has on file; /support/ is the same page at
+# a permanent address, which is what this repo links to; /privacy.html is the
+# policy Apple checks.
+ALLOWED = {
+    "https://cauriflores.github.io",
+    "https://cauriflores.github.io/",
+    "https://cauriflores.github.io/support/",
+    "https://cauriflores.github.io/privacy.html",
+}
+
+# Prose that discusses these URLs rather than linking to them — this hook's own
+# explanation, CLAUDE.md, the READMEs. Scanning them would refuse every commit
+# that so much as describes the arrangement.
+SKIP_SUFFIXES = (".md",)
+SKIP_PATHS = {".githooks/pre-commit"}
+
+# What a hub page must actually carry. A subset of ALLOWED: the bare origin is
+# a legal URL to mention, but the hub links the permanent /support/ alias, so
+# requiring the origin here would refuse a page that is perfectly correct.
+REQUIRED = {
+    "https://cauriflores.github.io/support/",
+    "https://cauriflores.github.io/privacy.html",
+}
+
+# The pages that must keep carrying both links. They are the only place in this
+# repo those links belong — never the nav or any site-wide chrome.
+HUB_PAGES = {
+    "src/pages/pacheco-project/en.html",
+    "src/pages/pacheco-project/es.html",
+}
+
+URL = re.compile(r"https?://" + re.escape(HOST) + r"[^\s\"'<>)\]`,;]*")
+
+
+def urls_in(line):
+    """Every URL on the line, with trailing sentence punctuation removed."""
+    return [match.rstrip(".") or match for match in URL.findall(line)]
+
+
+def scannable(path):
+    return path not in SKIP_PATHS and not path.endswith(SKIP_SUFFIXES)
+
+
+def staged(paths_filter):
+    out = subprocess.run(
+        ["git", "diff", "--cached", "--name-only", "--diff-filter=" + paths_filter],
+        capture_output=True, text=True, check=True,
+    )
+    return [p for p in out.stdout.splitlines() if p]
+
+
+def staged_text(path):
+    """The file's content as it would be committed, or None if it is not text."""
+    blob = subprocess.run(["git", "show", ":" + path], capture_output=True)
+    if blob.returncode != 0:
+        return None
+    try:
+        return blob.stdout.decode("utf-8")
+    except UnicodeDecodeError:
+        return None
+
+
+def main() -> int:
+    problems = []
+
+    changed = staged("ACM")
+
+    for path in changed:
+        if not scannable(path):
+            continue
+        text = staged_text(path)
+        if text is None:
+            continue
+        for number, line in enumerate(text.splitlines(), 1):
+            for url in urls_in(line):
+                if url not in ALLOWED:
+                    problems.append(
+                        f"  {path}:{number}\n"
+                        f"      {url}\n"
+                        f"      is not one of the two URLs Apple has on file."
+                    )
+
+    for path in sorted(HUB_PAGES & set(changed)):
+        text = staged_text(path) or ""
+        for url in sorted(REQUIRED):
+            if url not in text:
+                problems.append(
+                    f"  {path}\n"
+                    f"      no longer links to {url}"
+                )
+
+    for path in sorted(HUB_PAGES & set(staged("D"))):
+        problems.append(f"  {path}\n      is being deleted; it carries Apple's links.")
+
+    if not problems:
+        return 0
+
+    print("\nCommit refused — Apple's support and privacy URLs.\n", file=sys.stderr)
+    print("\n".join(problems), file=sys.stderr)
+    print(
+        "\nThese two are the App Store support URL and the privacy policy Apple\n"
+        "checks. They live in the frozen cauriflores.github.io repo and must be\n"
+        "linked exactly as they are:\n",
+        file=sys.stderr,
+    )
+    for url in sorted(REQUIRED):
+        print(f"  {url}", file=sys.stderr)
+    print(
+        "\nDo not translate them, tidy them into relative paths, or change their\n"
+        "spelling. Moving the Support URL costs a new build and a full App Review.\n"
+        "\nIf this is deliberate: git commit --no-verify\n",
+        file=sys.stderr,
+    )
+    return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

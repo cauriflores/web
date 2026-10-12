@@ -84,6 +84,19 @@ move, and nothing published here may reach them.
 
 That is why this site exists on its own domain at all — it is not cosmetic.
 
+**Enforced since 2026-10-12:** `.githooks/pre-commit` refuses any commit where
+a staged file carries a `cauriflores.github.io` URL that is not one of the
+known-good ones, or where a hub page has stopped linking both. Wired with
+`git config core.hooksPath .githooks`. **That config is local and does NOT
+survive a fresh clone** — re-run it after cloning or the hook is silently
+inactive. `--no-verify` is the deliberate escape; `.md` files are skipped so
+prose can discuss the URLs.
+
+It exists because on 2026-10-12, rewriting the Spanish hub page in a plainer
+voice turned `privacy.html` into `privacidad` — a URL translated as though it
+were prose. **Never translate, localise or tidy a URL.** It was caught by hand
+that time.
+
 Consequences in this repo:
 
 - **Support and Privacy are linked ONLY from the Pacheco hub page**
