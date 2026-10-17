@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pacheco</title>
-<meta name="description" content="The local weather where you are, and weather information for where the people you care about are, each in its own time zone. They include a native iPhone app and a web version for any browser.">
-<link rel="icon" href="../favicon.ico?v=10" sizes="any">
-<link rel="icon" type="image/png" href="../favicon-32.png?v=10" sizes="32x32">
-<link rel="apple-touch-icon" href="../apple-touch-icon.png?v=10">
+<meta name="description" content="The local weather where you are, and weather information for where the people you care about are, each in its own time zone. They include a native app for iPhone, iPad and Mac, and a web version for any browser.">
+<link rel="icon" href="../favicon.ico?v=11" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png?v=11" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png?v=11">
 <meta name="theme-color" content="#c2185b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;600&display=swap">
-<link rel="stylesheet" href="../style.css?v=10">
+<link rel="stylesheet" href="../style.css?v=11">
 <script>try{var t=localStorage.getItem("pacheco-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
@@ -36,7 +36,7 @@
         <h1>Pacheco</h1>
       </div>
     </div>
-    <p class="lede">The local weather where you are, and weather information for where the people you care about are, each in its own time zone. They include a native iPhone app and a web version for any browser.</p>
+    <p class="lede">The local weather where you are, and weather information for where the people you care about are, each in its own time zone. They include a native app for iPhone, iPad and Mac, and a web version for any browser.</p>
     <p class="platforms"><span>Available on</span><a href="https://apps.apple.com/app/pacheco/id6806208255">App Store</a><a href="/pacheco/">Web</a></p>
     <nav><a href="/">Updates</a><a href="/pacheco-project/">Pacheco</a><a href="/shopmall/">Store·Mall</a></nav>
   </header>
@@ -50,6 +50,14 @@
     <figcaption>The iPhone app: your own weather, then a screen per friend — each on their local clock.</figcaption>
   </figure>
 
+  <figure class="gallery-fig">
+    <div class="gallery tablet">
+      <img src="ipad-home.webp" alt="Pacheco on an iPad at night: the photograph of a clear sky fills the left column at full height with Madrid, 20 °C and Clear over it, and the right column holds the readings, the 24-hour forecast and all nine days as a list.">
+      <img src="ipad-widget.webp" alt="An iPad Home Screen with the Friends' Weather widget: four cards side by side — Madrid 25 °C Clear 15:52, Peter 14 °C Rain 14:52, Ana 26 °C Cloudy 09:52, Mei 26 °C Mostly Clear 21:52 — each over a photograph, with the Apple Weather mark in the corner.">
+    </div>
+    <figcaption>On iPad, two columns, and the Friends' Weather widget on the Home Screen.</figcaption>
+  </figure>
+
   <h2>Llegó Pacheco</h2>
 
   <p>In Venezuela, <em>"Llegó Pacheco"</em> — "Pacheco has arrived" — means
@@ -59,20 +67,31 @@
   season, and the name stuck to the season itself. The app is named after the
   phrase, not the farmer.</p>
 
-  <h2>The iPhone app</h2>
+  <h2>The app</h2>
 
   <p>SwiftUI, Swift 6, iOS 26 and later. WeatherKit for the forecasts,
-  SwiftData for saved friends, MapKit for place search. About 4,500 lines,
-  66 tests.</p>
+  SwiftData for saved friends, MapKit for place search. About 5,200 lines,
+  66 tests, and 900 more lines in the widget.</p>
+
+  <p>One build covers iPhone and iPad, and the same build runs on Macs with
+  Apple silicon, where it installs from the Mac App Store. There is no separate
+  Mac version. On iPad the weather takes two columns — the photograph at full
+  height on one side, the readings and both forecasts on the other — and
+  friends move into a sidebar.</p>
 
   <p>Every screen is built on a photograph of the current condition: rain and
   snow fall over it, wind pans it slowly, and a gradient keeps the readings
   legible on top. Four of those photographs are still the original 393×852
   assets, mostly behind night storms and snow.</p>
 
-  <p>Since 1.1, a day in the 9-day forecast and an hour in the 24-hour one each
-  open into a screen of their own, and a friend can be placed by typing
-  coordinates.</p>
+  <p>A day in the 9-day forecast and an hour in the 24-hour one each open into
+  a screen of their own, and a friend can be placed by typing coordinates.</p>
+
+  <p><strong>Friends' Weather</strong> is a widget for the iPad Home Screen and
+  the Mac desktop: four cards side by side, your own place first and then up to
+  three friends, each with its weather and its local time, each opening that
+  place in the app. It comes in the extra-large size only, which is why there
+  is no iPhone widget.</p>
 
   <h2>The web version</h2>
 
@@ -90,9 +109,11 @@
 
   <h2>Get it</h2>
 
-  <p><a href="https://apps.apple.com/app/pacheco/id6806208255">Pacheco on the
-  App Store</a> — free, for iPhone, iOS 26 or later.<br>
-  <a href="/pacheco/">Pacheco in the browser</a> — any device, nothing to
+  <p><a class="badge" href="https://apps.apple.com/us/app/pacheco/id6806208255?itscg=30200&amp;itsct=apps_box_link&amp;mttnsubad=6806208255"><img src="app-store-badge-en.svg" alt="Download on the App Store" width="120" height="40"></a><br>
+  Free, for iPhone and iPad on iOS 26 or later, and for Macs with Apple
+  silicon on macOS 26 or later.</p>
+
+  <p><a href="/pacheco/">Pacheco in the browser</a> — any device, nothing to
   install.</p>
 
   <p class="listing">For the App Store listing:
@@ -109,7 +130,7 @@
         <h1>Pacheco</h1>
       </div>
     </div>
-    <p class="lede">El clima local donde estás, y la información del clima donde está la gente que te importa, cada uno en su franja horaria. Incluyen una app nativa para iPhone y una versión web para cualquier navegador.</p>
+    <p class="lede">El clima local donde estás, y la información del clima donde está la gente que te importa, cada uno en su franja horaria. Incluyen una app nativa para iPhone, iPad y Mac, y una versión web para cualquier navegador.</p>
     <p class="platforms"><span>Disponible en</span><a href="https://apps.apple.com/app/pacheco/id6806208255">App Store</a><a href="/pacheco/">Web</a></p>
     <nav><a href="/">Novedades</a><a href="/pacheco-project/">Pacheco</a><a href="/shopmall/">Store·Mall</a></nav>
   </header>
@@ -123,6 +144,14 @@
     <figcaption>La app de iPhone: tu propio clima, y luego una pantalla por cada amigo, cada una con su hora local.</figcaption>
   </figure>
 
+  <figure class="gallery-fig">
+    <div class="gallery tablet">
+      <img src="ipad-home.webp" alt="Pacheco en un iPad de noche: la fotografía de un cielo despejado ocupa la columna izquierda a toda altura con Madrid, 20 °C y Clear encima, y la columna derecha tiene los datos, el pronóstico de 24 horas y los nueve días en una lista.">
+      <img src="ipad-widget.webp" alt="Una pantalla de inicio de iPad con el widget El tiempo de tus amigos: cuatro tarjetas una al lado de la otra — Madrid 25 °C Clear 15:52, Peter 14 °C Rain 14:52, Ana 26 °C Cloudy 09:52, Mei 26 °C Mostly Clear 21:52 — cada una sobre una fotografía, con la marca Apple Weather en la esquina.">
+    </div>
+    <figcaption>En el iPad, dos columnas, y el widget El tiempo de tus amigos en la pantalla de inicio.</figcaption>
+  </figure>
+
   <h2>Llegó Pacheco</h2>
 
   <p>En Venezuela, <em>«Llegó Pacheco»</em> quiere decir que llegó el frío. La
@@ -132,11 +161,17 @@
   nombre se quedó pegado a la temporada. La app lleva el nombre de la
   expresión, no del florista.</p>
 
-  <h2>La app de iPhone</h2>
+  <h2>La app</h2>
 
   <p>SwiftUI, Swift 6, iOS 26 o posterior. WeatherKit para los pronósticos,
-  SwiftData para los amigos guardados, MapKit para buscar lugares. Unas 4.500
-  líneas, 66 tests.</p>
+  SwiftData para los amigos guardados, MapKit para buscar lugares. Unas 5.200
+  líneas, 66 tests, y 900 líneas más en el widget.</p>
+
+  <p>Una sola compilación cubre el iPhone y el iPad, y esa misma compilación
+  funciona en los Mac con chip de Apple, donde se instala desde el Mac App
+  Store. No hay una versión aparte para Mac. En el iPad el tiempo ocupa dos
+  columnas —la fotografía a toda altura a un lado, los datos y los dos
+  pronósticos al otro— y los amigos pasan a una barra lateral.</p>
 
   <p>Cada pantalla se construye sobre una fotografía de la condición actual:
   la lluvia y la nieve caen encima, el viento la desplaza despacio, y un
@@ -144,9 +179,15 @@
   siendo los archivos originales de 393×852, sobre todo detrás de tormentas
   nocturnas y nieve.</p>
 
-  <p>Desde la 1.1, un día del pronóstico de 9 días y una hora del de 24 horas
-  se abren cada uno en su propia pantalla, y a un amigo se le puede situar
-  escribiendo coordenadas.</p>
+  <p>Un día del pronóstico de 9 días y una hora del de 24 horas se abren cada
+  uno en su propia pantalla, y a un amigo se le puede situar escribiendo
+  coordenadas.</p>
+
+  <p><strong>El tiempo de tus amigos</strong> es un widget para la pantalla de
+  inicio del iPad y el escritorio del Mac: cuatro tarjetas una al lado de la
+  otra, primero tu lugar y después hasta tres amigos, cada una con su tiempo y
+  su hora local, y cada una abre ese lugar en la app. Viene solo en el tamaño
+  extragrande, y por eso no hay widget para el iPhone.</p>
 
   <h2>La versión web</h2>
 
@@ -165,10 +206,12 @@
 
   <h2>Consíguela</h2>
 
-  <p><a href="https://apps.apple.com/app/pacheco/id6806208255">Pacheco en el
-  App Store</a> — gratis, para iPhone, iOS 26 o posterior.<br>
-  <a href="/pacheco/">Pacheco en el navegador</a> — en cualquier dispositivo,
-  sin instalar nada.</p>
+  <p><a class="badge" href="https://apps.apple.com/es/app/pacheco/id6806208255?itscg=30200&amp;itsct=apps_box_link&amp;mttnsubad=6806208255"><img src="app-store-badge-es.svg" alt="Consíguelo en el App Store" width="120" height="40"></a><br>
+  Gratis, para iPhone y iPad con iOS 26 o posterior, y para Mac con chip de
+  Apple con macOS 26 o posterior.</p>
+
+  <p><a href="/pacheco/">Pacheco en el navegador</a> — en cualquier
+  dispositivo, sin instalar nada.</p>
 
   <p class="listing">Para la ficha del App Store:
   <a href="https://cauriflores.github.io/support/">Soporte</a> ·
@@ -176,6 +219,6 @@
   </div>
 
 </div>
-<script src="../lang.js?v=10"></script>
+<script src="../lang.js?v=11"></script>
 </body>
 </html>

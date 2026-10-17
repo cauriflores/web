@@ -7,6 +7,14 @@
     <figcaption>The iPhone app: your own weather, then a screen per friend — each on their local clock.</figcaption>
   </figure>
 
+  <figure class="gallery-fig">
+    <div class="gallery tablet">
+      <img src="ipad-home.webp" alt="Pacheco on an iPad at night: the photograph of a clear sky fills the left column at full height with Madrid, 20 °C and Clear over it, and the right column holds the readings, the 24-hour forecast and all nine days as a list.">
+      <img src="ipad-widget.webp" alt="An iPad Home Screen with the Friends' Weather widget: four cards side by side — Madrid 25 °C Clear 15:52, Peter 14 °C Rain 14:52, Ana 26 °C Cloudy 09:52, Mei 26 °C Mostly Clear 21:52 — each over a photograph, with the Apple Weather mark in the corner.">
+    </div>
+    <figcaption>On iPad, two columns, and the Friends' Weather widget on the Home Screen.</figcaption>
+  </figure>
+
   <h2>Llegó Pacheco</h2>
 
   <p>In Venezuela, <em>"Llegó Pacheco"</em> — "Pacheco has arrived" — means
@@ -16,20 +24,31 @@
   season, and the name stuck to the season itself. The app is named after the
   phrase, not the farmer.</p>
 
-  <h2>The iPhone app</h2>
+  <h2>The app</h2>
 
   <p>SwiftUI, Swift 6, iOS 26 and later. WeatherKit for the forecasts,
-  SwiftData for saved friends, MapKit for place search. About 4,500 lines,
-  66 tests.</p>
+  SwiftData for saved friends, MapKit for place search. About 5,200 lines,
+  66 tests, and 900 more lines in the widget.</p>
+
+  <p>One build covers iPhone and iPad, and the same build runs on Macs with
+  Apple silicon, where it installs from the Mac App Store. There is no separate
+  Mac version. On iPad the weather takes two columns — the photograph at full
+  height on one side, the readings and both forecasts on the other — and
+  friends move into a sidebar.</p>
 
   <p>Every screen is built on a photograph of the current condition: rain and
   snow fall over it, wind pans it slowly, and a gradient keeps the readings
   legible on top. Four of those photographs are still the original 393×852
   assets, mostly behind night storms and snow.</p>
 
-  <p>Since 1.1, a day in the 9-day forecast and an hour in the 24-hour one each
-  open into a screen of their own, and a friend can be placed by typing
-  coordinates.</p>
+  <p>A day in the 9-day forecast and an hour in the 24-hour one each open into
+  a screen of their own, and a friend can be placed by typing coordinates.</p>
+
+  <p><strong>Friends' Weather</strong> is a widget for the iPad Home Screen and
+  the Mac desktop: four cards side by side, your own place first and then up to
+  three friends, each with its weather and its local time, each opening that
+  place in the app. It comes in the extra-large size only, which is why there
+  is no iPhone widget.</p>
 
   <h2>The web version</h2>
 
@@ -47,9 +66,11 @@
 
   <h2>Get it</h2>
 
-  <p><a href="https://apps.apple.com/app/pacheco/id6806208255">Pacheco on the
-  App Store</a> — free, for iPhone, iOS 26 or later.<br>
-  <a href="/pacheco/">Pacheco in the browser</a> — any device, nothing to
+  <p><a class="badge" href="https://apps.apple.com/us/app/pacheco/id6806208255?itscg=30200&amp;itsct=apps_box_link&amp;mttnsubad=6806208255"><img src="app-store-badge-en.svg" alt="Download on the App Store" width="120" height="40"></a><br>
+  Free, for iPhone and iPad on iOS 26 or later, and for Macs with Apple
+  silicon on macOS 26 or later.</p>
+
+  <p><a href="/pacheco/">Pacheco in the browser</a> — any device, nothing to
   install.</p>
 
   <p class="listing">For the App Store listing:

@@ -301,6 +301,24 @@ nav a[aria-current="page"] {
   font-weight: 600;
 }
 
+/* Apple's "Download on the App Store" badge.
+   The artwork is used exactly as Apple supplies it — never recoloured,
+   redrawn, angled or animated, and the grey border on the black badge is part
+   of the artwork, not something to remove. Apple's minimum onscreen height is
+   40px, which is the SVG's own height, so it is pinned there rather than
+   scaled. Clear space must be at least a quarter of the height: the 12px
+   margin covers the 10px that requires. */
+.badge {
+  display: inline-block;
+  margin: 12px 12px 12px 0;
+}
+
+.badge img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
 /* Screenshot figures on project pages. */
 .shot {
   margin: 22px 0;
@@ -397,6 +415,14 @@ nav a[aria-current="page"] {
 .gallery.two {
   grid-template-columns: repeat(2, 1fr);
   max-width: 450px;
+}
+
+/* A pair of iPad screenshots. Two columns like .two, but uncapped: a tablet
+   capture is about 0.75 wide-to-tall against a phone's 0.46, so at the 219px
+   that suits a phone it would come out barely 290px tall and unreadable. At
+   the full column each lands near 334px. */
+.gallery.tablet {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .gallery img {
